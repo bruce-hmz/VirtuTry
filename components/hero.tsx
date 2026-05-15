@@ -12,22 +12,20 @@ import { useRouter } from "next/navigation";
 import { LocaleLink } from "@/components/locale-link";
 import { useTranslations, useLocale } from 'next-intl';
 
-const COURSE_COMMUNITY_URL = "https://scys.com/deepsea/2001/course";
-
 export const Hero = () => {
   const router = useRouter();
   const t = useTranslations('hero');
   const locale = useLocale();
-  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if (!isCodeModalOpen) {
+    if (!isModalOpen) {
       return;
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsCodeModalOpen(false);
+        setIsModalOpen(false);
       }
     };
 
@@ -39,7 +37,7 @@ export const Hero = () => {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isCodeModalOpen]);
+  }, [isModalOpen]);
 
   return (
     <div className="flex flex-col min-h-screen pt-20 md:pt-40 relative overflow-hidden">
@@ -113,18 +111,13 @@ export const Hero = () => {
         }}
         className="flex items-center gap-4 justify-center mt-6 relative z-10"
       >
-        <Button
-          as={LocaleLink}
-          href="/docs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Button as={LocaleLink} href="/try-on">
           {t('cta.primary')}
         </Button>
         <Button
           variant="simple"
           type="button"
-          onClick={() => setIsCodeModalOpen(true)}
+          onClick={() => setIsModalOpen(true)}
           className="flex space-x-2 items-center group"
         >
           <span>{t('cta.secondary')}</span>
@@ -132,13 +125,13 @@ export const Hero = () => {
         </Button>
       </motion.div>
       <AnimatePresence>
-        {isCodeModalOpen && (
+        {isModalOpen && (
           <motion.div
             className="fixed inset-0 z-[80] flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsCodeModalOpen(false)}
+            onClick={() => setIsModalOpen(false)}
           >
             <div className="absolute inset-0 bg-background/70 backdrop-blur-md" />
             <motion.div
@@ -161,7 +154,7 @@ export const Hero = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => setIsCodeModalOpen(false)}
+                    onClick={() => setIsModalOpen(false)}
                     className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 text-lg text-muted-foreground transition hover:bg-secondary hover:text-foreground"
                     aria-label={t("modal.close")}
                   >
@@ -175,44 +168,33 @@ export const Hero = () => {
                 >
                   {t("modal.title")}
                 </h3>
-                <p
+                <div
                   id="hero-code-modal-description"
-                  className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base"
+                  className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base whitespace-pre-line"
                 >
                   {t("modal.description")}
-                </p>
+                </div>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
                   {t("modal.instruction")}
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button
-                    as="a"
-                    href={COURSE_COMMUNITY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group"
-                  >
+                  <Button as={LocaleLink} href="/try-on" className="group">
                     <span>{t("modal.linkLabel")}</span>
                     <HiArrowRight className="ml-2 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                   </Button>
                   <Button
                     variant="simple"
                     type="button"
-                    onClick={() => setIsCodeModalOpen(false)}
+                    onClick={() => setIsModalOpen(false)}
                   >
                     {t("modal.close")}
                   </Button>
                 </div>
 
-                <a
-                  href={COURSE_COMMUNITY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex break-all text-sm text-muted-foreground underline decoration-border underline-offset-4 transition hover:text-foreground"
-                >
+                <div className="mt-5 text-sm text-muted-foreground">
                   {t("modal.linkHint")}
-                </a>
+                </div>
               </div>
             </motion.div>
           </motion.div>

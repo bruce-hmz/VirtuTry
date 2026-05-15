@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, integer, varchar, index } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, integer, varchar, index, uuid } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -198,3 +198,67 @@ export const newsletterSubscription = pgTable("newsletter_subscription", {
   unsubscribedAt: timestamp("unsubscribed_at"),
   updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
 });
+
+// Clothing library
+export const clothing = pgTable(
+  "clothing",
+  {
+    id: text("id").primaryKey(),
+    name: varchar("name", { length: 255 }).notNull(),
+    category: varchar("category", { length: 50 }).notNull(), // dress, shirt, coat, pants, etc.
+    tags: text("tags").array(), // ['casual', 'summer', 'blue']
+    imageUrl: text("image_url").notNull(),
+    imageBase64: text("image_base64"), // optional cache to reduce API calls
+    uploadedBy: text("uploaded_by").references(() => user.id, { onDelete: "set null" }),
+    active: boolean("active").default(true).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
+  },
+  table => ({
+    categoryIdx: index("clothing_category_idx").on(table.category),
+  }),
+);
+
+// Virtual try-on history
+export const virtualTryOn = pgTable(
+  "virtual_try_on",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+    personImageUrl: text("person_image_url").notNull(),
+    personImageBase64: text("person_image_base64"), // optional cache
+    clothingIds: text("clothing_ids").array(), // [id1, id2, id3] as text array
+    resultImageUrl: text("result_image_url"),
+    resultImageBase64: text("result_image_base64"), // optional cache for quick loading
+    hasWatermark: boolean("has_watermark").default(true).notNull(),
+    creditsUsed: integer("credits_used").default(50).notNull(),
+    seedreamTaskId: varchar("seedream_task_id", { length: 255 }), // API task ID
+    status: varchar("status", { length: 50 }).default("pending").notNull(), // pending, processing, completed, failed
+    errorMessage: text("error_message"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
+  },
+  table => ({
+    userIdIdx: index("virtual_try_on_user_id_idx").on(table.userId),
+    seedreamTaskIdIdx: index("virtual_try_on_seedream_task_id_idx").on(table.seedreamTaskId),
+  }),
+);
+
+// Try-on usage quotas (daily and monthly)
+export const tryOnQuota = pgTable(
+  "try_on_quota",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+    quotaType: varchar("quota_type", { length: 20 }).notNull(), // 'daily' | 'monthly'
+    quotaLimit: integer("quota_limit").notNull(),
+    quotaUsed: integer("quota_used").default(0).notNull(),
+    resetAt: timestamp("reset_at").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
+  },
+  table => ({
+    userIdQuotaTypeIdx: index("try_on_quota_user_id_quota_type_idx").on(table.userId, table.quotaType),
+    resetAtIdx: index("try_on_quota_reset_at_idx").on(table.resetAt),
+  }),
+);

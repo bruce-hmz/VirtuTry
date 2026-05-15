@@ -47,7 +47,8 @@
       "video": "视频",
       "credits": "积分管理",
       "profile": "个人资料",
-      "settings": "设置"
+      "settings": "设置",
+      "tryOn": "虚拟试穿"
     },
     "footer": {
       "legal": {
@@ -64,20 +65,20 @@
     }
   },
   "hero": {
-    "badge": "⚡ 专为 Vibe Coding 打造的首款入门套件",
-    "title": "通过 Vibe Coding 将您的 AI SaaS 产品投入生产",
-    "description": "不懂编程？没问题。Sistine 加上 AI 编程助手，让您的 SaaS 创意在数小时内上线。您只需描述您的想法，即可交付用户真正喜爱的产品。",
+    "badge": "✨ AI 虚拟试穿",
+    "title": "先试再买，看看衣服穿上身的效果",
+    "description": "上传照片，挑选衣服，AI 帮你预览真实穿着效果。告别凭想象购物，减少退货烦恼。",
     "cta": {
-      "primary": "查看文档",
-      "secondary": "获取代码"
+      "primary": "立即体验",
+      "secondary": "如何运作"
     },
     "modal": {
-      "eyebrow": "源码获取",
-      "title": "请在课程社区获取源码",
-      "description": "Sistine Starter 的完整源码、更新说明和配套资料都放在课程社区里统一发放。",
-      "instruction": "如果你已经加入课程，点击下方链接即可在新窗口打开课程社区，获取代码与相关资料。",
-      "linkLabel": "前往课程社区",
-      "linkHint": "课程社区：https://scys.com/deepsea/2001/course",
+      "eyebrow": "使用说明",
+      "title": "三步看到你的试穿效果",
+      "description": "1. 上传一张身穿贴身衣物的照片。\n2. 从衣服库选择或上传自己的衣服。\n3. AI 生成你穿着该衣服的真实预览。",
+      "instruction": "每次试穿消耗 50 积分。免费用户每天可试穿 3 次。",
+      "linkLabel": "开始试穿",
+      "linkHint": "免费注册体验 VirtuTry",
       "close": "关闭"
     }
   },
@@ -175,6 +176,16 @@
           "支付成功后立即到账",
           "不会改变您当前的订阅方案",
           "适合发布前冲刺、短期活动或偶发高峰"
+        ]
+      },
+      "tryonPack": {
+        "name": "试穿包",
+        "description": "无需订阅即可使用虚拟试穿功能。",
+        "cta": "购买 {tries} 次",
+        "features": [
+          "每次试穿消耗 50 点 = {tries} 次试穿",
+          "立即到账到您的积分余额",
+          "无需订阅套餐"
         ]
       }
     }
@@ -562,6 +573,7 @@
       "users": "用户管理",
       "subscriptions": "订阅管理",
       "credits": "积分管理",
+      "clothing": "衣服库管理",
       "backToDashboard": "返回用户面板"
     },
     "header": {
@@ -1003,6 +1015,70 @@
       "description": "获取最新动态和资讯，直接发送到您的邮箱。",
       "placeholder": "输入您的邮箱",
       "subscribe": "订阅"
+    }
+  },
+  "virtualTryOn": {
+    "title": "虚拟试穿",
+    "subtitle": "上传您的照片并选择衣服，预览实际穿着效果",
+    "yourPhoto": "您的照片",
+    "clothing": "衣服",
+    "fromLibrary": "从库中选择",
+    "hideLibrary": "收起库",
+    "clothingLibrary": "衣服库",
+    "noClothing": "衣服库为空",
+    "generate": "生成试穿效果",
+    "generating": "生成中...",
+    "usage": "使用情况",
+    "history": "历史记录",
+    "myHistory": "我的试穿历史",
+    "historySubtitle": "查看和管理您的虚拟试穿记录",
+    "noHistory": "暂无试穿记录",
+    "startTryOn": "开始试穿",
+    "download": "下载",
+    "delete": "删除",
+    "retry": "重试",
+    "result": "试穿结果",
+    "wardrobe": {
+      "title": "衣服库",
+      "subtitle": "浏览并选择衣服进行虚拟试穿",
+      "all": "全部",
+      "search": "搜索...",
+      "selected": "已选择",
+      "useForTryOn": "用于试穿",
+      "noItems": "暂无衣服"
+    },
+    "quota": {
+      "daily": "日使用量",
+      "monthly": "月使用量",
+      "credits": "积分",
+      "upgrade": "升级套餐",
+      "dailyLimitReached": "已达到日使用上限",
+      "monthlyLimitReached": "已达到月使用上限",
+      "insufficientCredits": "积分不足"
+    },
+    "status": {
+      "idle": "上传照片和衣服开始试穿",
+      "pending": "正在提交请求...",
+      "processing": "正在生成试穿效果...",
+      "completed": "试穿完成",
+      "failed": "生成失败",
+      "timedOut": "等待结果超时"
+    },
+    "admin": {
+      "title": "衣服库管理",
+      "subtitle": "管理虚拟试穿的衣服",
+      "upload": "上传衣服",
+      "uploadTitle": "上传衣服",
+      "name": "名称",
+      "category": "分类",
+      "tags": "标签（逗号分隔）",
+      "image": "图片",
+      "all": "全部",
+      "noItems": "暂无衣服，上传第一件吧！",
+      "save": "保存",
+      "cancel": "取消",
+      "uploading": "上传中...",
+      "dismiss": "关闭"
     }
   }
 }

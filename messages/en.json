@@ -47,7 +47,8 @@
       "video": "Video",
       "credits": "Credits",
       "profile": "Profile",
-      "settings": "Settings"
+      "settings": "Settings",
+      "tryOn": "Virtual Try-On"
     },
     "footer": {
       "legal": {
@@ -64,20 +65,20 @@
     }
   },
   "hero": {
-    "badge": "⚡ The First Starter Built for Vibe Coding",
-    "title": "Vibe Code Your AI SaaS to Production",
-    "description": "No coding skills? Perfect. Sistine + AI coding assistants = Your SaaS idea live in hours. Just describe what you want. Ship what users love.",
+    "badge": "✨ AI-Powered Virtual Try-On",
+    "title": "Try Before You Buy. See How Clothes Look on You.",
+    "description": "Upload your photo, pick any outfit, and let AI show you exactly how it fits. No more guesswork, no more returns.",
     "cta": {
-      "primary": "View Docs",
-      "secondary": "Get Code"
+      "primary": "Try It Now",
+      "secondary": "How It Works"
     },
     "modal": {
-      "eyebrow": "Code Access",
-      "title": "Get the source code from our course community",
-      "description": "The full Sistine Starter codebase, update notes, and companion materials are distributed inside our course community.",
-      "instruction": "If you're enrolled, open the course page below in a new tab to access the code, updates, and course resources.",
-      "linkLabel": "Open the course community",
-      "linkHint": "Course community: https://scys.com/deepsea/2001/course",
+      "eyebrow": "How It Works",
+      "title": "Three simple steps to see your look",
+      "description": "1. Upload a photo of yourself in form-fitting clothes.\n2. Choose outfits from our library or upload your own clothes.\n3. AI generates a realistic preview of you wearing the outfit.",
+      "instruction": "Each try-on uses 50 credits. Free users get 3 tries per day.",
+      "linkLabel": "Start Trying On",
+      "linkHint": "Sign up free to try VirtuTry today",
       "close": "Close"
     }
   },
@@ -175,6 +176,16 @@
           "Credits are added immediately after payment",
           "Keeps your current subscription unchanged",
           "Useful for launches, spikes, and one-off bursts"
+        ]
+      },
+      "tryonPack": {
+        "name": "Try-On Pack",
+        "description": "For virtual try-on without a subscription.",
+        "cta": "Buy {tries} Tries",
+        "features": [
+          "50 credits per try-on = {tries} total tries",
+          "Added instantly to your credit balance",
+          "No subscription needed"
         ]
       }
     }
@@ -562,6 +573,7 @@
       "users": "User Management",
       "subscriptions": "Subscriptions",
       "credits": "Credits Management",
+      "clothing": "Clothing Library",
       "backToDashboard": "Back to User Dashboard"
     },
     "header": {
@@ -1004,6 +1016,70 @@
       "description": "Get the latest updates and news directly in your inbox.",
       "placeholder": "Enter your email",
       "subscribe": "Subscribe"
+    }
+  },
+  "virtualTryOn": {
+    "title": "Virtual Try-On",
+    "subtitle": "Upload your photo and choose clothes to see how they look on you",
+    "yourPhoto": "Your Photo",
+    "clothing": "Clothing",
+    "fromLibrary": "From Library",
+    "hideLibrary": "Hide Library",
+    "clothingLibrary": "Clothing Library",
+    "noClothing": "No clothing in library",
+    "generate": "Generate Try-On",
+    "generating": "Generating...",
+    "usage": "Usage",
+    "history": "History",
+    "myHistory": "My Try-On History",
+    "historySubtitle": "View and manage your virtual try-on records",
+    "noHistory": "No try-on history yet",
+    "startTryOn": "Start Try-On",
+    "download": "Download",
+    "delete": "Delete",
+    "retry": "Retry",
+    "result": "Result",
+    "wardrobe": {
+      "title": "Clothing Library",
+      "subtitle": "Browse and select clothes for your virtual try-on",
+      "all": "All",
+      "search": "Search...",
+      "selected": "selected",
+      "useForTryOn": "Use for Try-On",
+      "noItems": "No clothing items found"
+    },
+    "quota": {
+      "daily": "Daily usage",
+      "monthly": "Monthly usage",
+      "credits": "Credits",
+      "upgrade": "Upgrade Plan",
+      "dailyLimitReached": "Daily limit reached",
+      "monthlyLimitReached": "Monthly limit reached",
+      "insufficientCredits": "Insufficient credits"
+    },
+    "status": {
+      "idle": "Upload a photo and clothing to begin",
+      "pending": "Submitting request...",
+      "processing": "Generating try-on result...",
+      "completed": "Try-on completed",
+      "failed": "Generation failed",
+      "timedOut": "Timed out waiting for result"
+    },
+    "admin": {
+      "title": "Clothing Library",
+      "subtitle": "Manage clothing items for virtual try-on",
+      "upload": "Upload Clothing",
+      "uploadTitle": "Upload Clothing",
+      "name": "Name",
+      "category": "Category",
+      "tags": "Tags (comma separated)",
+      "image": "Image",
+      "all": "All",
+      "noItems": "No clothing items. Upload your first one!",
+      "save": "Save",
+      "cancel": "Cancel",
+      "uploading": "Uploading...",
+      "dismiss": "Dismiss"
     }
   }
 }

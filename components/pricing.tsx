@@ -11,6 +11,7 @@ import { useSession } from "@/lib/auth-client";
 import {
   getDefaultOneTimePack,
   getSubscriptionPlanDisplays,
+  getTryOnPackDisplays,
 } from "@/lib/billing-display";
 
 type BillingTab = "monthly" | "yearly";
@@ -231,6 +232,53 @@ export function Pricing() {
             {t("tiers.credits.cta", { credits: defaultPack.displayCredits })}
           </Button>
         </div>
+
+        {getTryOnPackDisplays().map((tryonPack) => (
+          <div key={tryonPack.key} className="flex h-full flex-col justify-between rounded-lg bg-card px-6 py-8 sm:mx-8 lg:mx-0">
+            <div>
+              <h3 className="text-base font-semibold leading-7 text-muted-foreground">
+                {t("tiers.tryonPack.name")}
+              </h3>
+              <p className="mt-4">
+                <motion.span
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  key={`tryon-pack-${tryonPack.key}`}
+                  className="inline-block text-4xl font-bold tracking-tight text-foreground"
+                >
+                  {tryonPack.displayPrice}
+                </motion.span>
+              </p>
+              <p className="mt-3 text-sm font-medium text-muted-foreground">
+                {t("details.oneTimeCredits", { credits: tryonPack.displayCredits })}
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t("details.oneTimeDelivery")}
+              </p>
+              <p className="mt-6 min-h-12 text-sm leading-7 text-muted-foreground">
+                {t("tiers.tryonPack.description")}
+              </p>
+              <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-muted-foreground sm:mt-10">
+                {(t.raw("tiers.tryonPack.features") as string[]).map((feature) => (
+                  <li key={feature} className="flex gap-x-3">
+                    <IconCircleCheckFilled
+                      className="h-6 w-5 flex-none text-muted-foreground"
+                      aria-hidden="true"
+                    />
+                    {feature.replace("{tries}", tryonPack.displayTryOns)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Button
+              onClick={() => startCheckout(tryonPack.key, "one_time")}
+              className="mt-8 block w-full rounded-full px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10"
+            >
+              {t("tiers.tryonPack.cta", { tries: tryonPack.displayTryOns })}
+            </Button>
+          </div>
+        ))}
       </div>
     </div>
   );

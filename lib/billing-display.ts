@@ -50,6 +50,21 @@ export function getDefaultOneTimePack() {
   };
 }
 
+export const TRYON_PACK_KEYS: PackKey[] = ["tryon_10", "tryon_50", "tryon_100"];
+
+export function getTryOnPackDisplays() {
+  return TRYON_PACK_KEYS.map((key) => {
+    const pack = oneTimePacks[key];
+    return {
+      key,
+      pack,
+      displayCredits: formatCredits(pack.credits),
+      displayPrice: formatUsdPrice(pack.priceCents),
+      displayTryOns: String(Math.floor(pack.credits / 50)),
+    };
+  });
+}
+
 export function getSubscriptionPlanDisplays() {
   return MARKETING_SUBSCRIPTION_PLAN_FAMILIES.map((family) => {
     const monthlyPlan = subscriptionPlans[family.monthlyKey];
