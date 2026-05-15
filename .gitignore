@@ -63,3 +63,13 @@ public/fumadocs-style.css
 
 # scripts
 /scripts/manage-users.ts
+
+# OMC agent state
+.omc/
+
+# tunnel logs
+*.log
+
+# demo/test files
+/test-resend.mjs
+/cloudflared.exe

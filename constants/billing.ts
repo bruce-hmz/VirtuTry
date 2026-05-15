@@ -6,7 +6,7 @@ export type PlanKey =
   | "pro_monthly"
   | "pro_yearly";
 
-export type PackKey = "pack_200";
+export type PackKey = "pack_200" | "tryon_10" | "tryon_50" | "tryon_100";
 
 export type GrantScheduleConfig =
   | {
@@ -105,7 +105,52 @@ export const oneTimePacks: Record<PackKey, OneTimePack> = {
     credits: 200,
     creemPriceId: "prod_3SiroZeMbMQidMVFDMUzKy",
   },
+  tryon_10: {
+    key: "tryon_10",
+    kind: "one_time",
+    priceCents: 299,
+    currency: "usd",
+    credits: 500,
+    creemPriceId: undefined,
+  },
+  tryon_50: {
+    key: "tryon_50",
+    kind: "one_time",
+    priceCents: 1099,
+    currency: "usd",
+    credits: 2500,
+    creemPriceId: undefined,
+  },
+  tryon_100: {
+    key: "tryon_100",
+    kind: "one_time",
+    priceCents: 1899,
+    currency: "usd",
+    credits: 5000,
+    creemPriceId: undefined,
+  },
 };
+
+export const VIRTUAL_TRY_ON_PLANS = {
+  free: {
+    dailyQuota: 3,
+    monthlyQuota: 90,
+    maxClothingPerTry: 1,
+    hasWatermark: true,
+  },
+  starter: {
+    priceCents: 999,
+    monthlyQuota: 200,
+    maxClothingPerTry: 3,
+    hasWatermark: false,
+  },
+  pro: {
+    priceCents: 1999,
+    monthlyQuota: 1000,
+    maxClothingPerTry: 5,
+    hasWatermark: false,
+  },
+} as const;
 
 export function isSubscriptionKey(key: string): key is PlanKey {
   return (key as PlanKey) in subscriptionPlans;

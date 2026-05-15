@@ -99,29 +99,31 @@ describe("Hero", () => {
     vi.clearAllMocks();
   });
 
-  it("opens the course-community modal and keeps the link as a new-tab external url", () => {
+  it("opens the how-it-works modal with try-on CTA", () => {
     render(<Hero />);
 
     expect(
       screen.queryByRole("dialog", {
-        name: "Get the source code from our course community",
+        name: "Three simple steps to see your look",
       })
     ).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Get Code" }));
+    fireEvent.click(screen.getByRole("button", { name: "How It Works" }));
 
     expect(
       screen.getByRole("dialog", {
-        name: "Get the source code from our course community",
+        name: "Three simple steps to see your look",
       })
     ).toBeInTheDocument();
 
-    const courseLink = screen.getByRole("link", { name: "Open the course community" });
-    expect(courseLink).toHaveAttribute(
-      "href",
-      "https://scys.com/deepsea/2001/course"
-    );
-    expect(courseLink).toHaveAttribute("target", "_blank");
-    expect(courseLink).toHaveAttribute("rel", "noopener noreferrer");
+    const tryOnLink = screen.getByRole("link", { name: "Start Trying On" });
+    expect(tryOnLink).toHaveAttribute("href", "/en/try-on");
+  });
+
+  it("has a primary CTA linking to try-on", () => {
+    render(<Hero />);
+
+    const tryOnButton = screen.getByRole("link", { name: "Try It Now" });
+    expect(tryOnButton).toHaveAttribute("href", "/en/try-on");
   });
 });

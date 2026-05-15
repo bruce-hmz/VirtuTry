@@ -10,6 +10,7 @@ import {
   resetSubscriptionSchedule,
 } from "@/lib/billing/subscription";
 import { eq, sql } from "drizzle-orm";
+import { reinitializeUserQuotas } from "@/lib/virtualtry";
 import { sendPurchaseEmail } from "@/lib/email";
 
 type CreemMetadata = {
@@ -373,6 +374,15 @@ export async function POST(req: NextRequest) {
           .update(userTable)
           .set({ planKey })
           .where(eq(userTable.id, userId));
+      }
+
+      if (kind === "subscription") {
+        const userTier = planKey ? "paid" : "free";
+        try {
+          await reinitializeUserQuotas(userId, userTier);
+        } catch (quotaError) {
+          console.error("[Webhook] Failed to reinitialize quotas:", quotaError);
+        }
       }
 
       if (kind === "subscription" && subscriptionId) {

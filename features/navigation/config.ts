@@ -16,6 +16,10 @@ type NavigationKeyItem = {
 // These are the navigation keys for translation
 export const marketingNavigationKeys: NavigationKeyItem[] = [
   {
+    key: "tryOn",
+    href: "/try-on",
+  },
+  {
     key: "demo",
     href: "/demo",
     subItems: [
@@ -61,6 +65,10 @@ export const appNavigationKeys: NavigationKeyItem[] = [
     href: "/dashboard",
   },
   {
+    key: "tryOn",
+    href: "/try-on",
+  },
+  {
     key: "settings",
     href: "/settings",
   },
@@ -72,6 +80,10 @@ export const appNavigationKeys: NavigationKeyItem[] = [
 
 // Legacy exports for compatibility
 export const marketingNavigation: NavigationItem[] = [
+  {
+    title: "Try-On",
+    href: "/try-on",
+  },
   {
     title: "Demo",
     href: "/demo",
@@ -99,6 +111,10 @@ export const appNavigation: NavigationItem[] = [
   {
     title: "Dashboard",
     href: "/dashboard",
+  },
+  {
+    title: "Try-On",
+    href: "/try-on",
   },
   {
     title: "Settings",

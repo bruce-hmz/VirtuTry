@@ -7,7 +7,8 @@ import {
   Users,
   Home,
   ShoppingCart,
-  Database
+  Database,
+  Shirt,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -31,6 +32,11 @@ const adminNavItems = [
     title: "credits",
     href: "/admin/credits",
     icon: Database,
+  },
+  {
+    title: "clothing",
+    href: "/admin/clothing",
+    icon: Shirt,
   },
 ];
 
