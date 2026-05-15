@@ -377,7 +377,7 @@ export async function POST(req: NextRequest) {
       }
 
       if (kind === "subscription") {
-        const userTier = planKey && planKey !== "free" ? "paid" : "free";
+        const userTier = planKey ? "paid" : "free";
         try {
           await reinitializeUserQuotas(userId, userTier);
         } catch (quotaError) {
