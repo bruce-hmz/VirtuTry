@@ -9,7 +9,7 @@ const getDefaultFromEmail = () => {
   
   // 2. 开发环境使用 Resend 测试邮箱
   if (process.env.NODE_ENV === 'development') {
-    return 'Sistine AI <onboarding@resend.dev>';
+    return 'VirtuTry <onboarding@resend.dev>';
   }
   
   // 3. 生产环境要求必须配置
@@ -22,7 +22,7 @@ const getDefaultFromEmail = () => {
   }
   
   // 4. 使用配置的域名和应用名称
-  const appName = process.env.NEXT_PUBLIC_APP_NAME || 'Sistine AI';
+  const appName = process.env.NEXT_PUBLIC_APP_NAME || 'VirtuTry';
   const fromName = process.env.RESEND_FROM_NAME || appName;
   return `${fromName} <noreply@${process.env.RESEND_VERIFIED_DOMAIN}>`;
 };
@@ -93,10 +93,10 @@ export async function sendVerificationEmail(email: string, token: string) {
   
   return sendEmail({
     to: email,
-    subject: 'Verify your email - Sistine AI',
+    subject: 'Verify your email - VirtuTry',
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #333;">Welcome to Sistine AI!</h1>
+        <h1 style="color: #333;">Welcome to VirtuTry!</h1>
         <p>Please click the link below to verify your email address:</p>
         <a href="${verificationUrl}" style="display: inline-block; padding: 12px 24px; background-color: #000; color: #fff; text-decoration: none; border-radius: 6px; margin: 20px 0;">
           Verify Email
@@ -104,7 +104,7 @@ export async function sendVerificationEmail(email: string, token: string) {
         <p>Or copy this link to your browser:</p>
         <p style="color: #666; word-break: break-all;">${verificationUrl}</p>
         <p style="color: #999; font-size: 14px; margin-top: 30px;">
-          If you didn't sign up for Sistine AI, you can safely ignore this email.
+          If you didn't sign up for VirtuTry, you can safely ignore this email.
         </p>
       </div>
     `,
@@ -117,7 +117,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
   
   return sendEmail({
     to: email,
-    subject: 'Reset your password - Sistine AI',
+    subject: 'Reset your password - VirtuTry',
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #333;">Password Reset Request</h1>
@@ -139,10 +139,10 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 export async function sendWelcomeEmail(email: string, name?: string) {
   return sendEmail({
     to: email,
-    subject: 'Welcome to Sistine AI!',
+    subject: 'Welcome to VirtuTry!',
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #333;">Welcome to Sistine AI${name ? ', ' + name : ''}!</h1>
+        <h1 style="color: #333;">Welcome to VirtuTry${name ? ', ' + name : ''}!</h1>
         <p>Thank you for joining us! We're excited to have you on board.</p>
         <p>Here's what you can do next:</p>
         <ul style="line-height: 1.8;">
@@ -170,7 +170,7 @@ export async function sendPurchaseEmail(email: string, orderDetails: PurchaseEma
 
   return sendEmail({
     to: email,
-    subject: 'Purchase Confirmation - Sistine AI',
+    subject: 'Purchase Confirmation - VirtuTry',
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #333;">Purchase Successful!</h1>
@@ -186,7 +186,7 @@ export async function sendPurchaseEmail(email: string, orderDetails: PurchaseEma
           View Dashboard
         </a>
         <p style="color: #999; font-size: 14px; margin-top: 30px;">
-          Thank you for choosing Sistine AI!
+          Thank you for choosing VirtuTry!
         </p>
       </div>
     `,
@@ -197,11 +197,11 @@ export async function sendPurchaseEmail(email: string, orderDetails: PurchaseEma
 export async function sendSubscriptionExpiryReminder(email: string, daysRemaining: number) {
   return sendEmail({
     to: email,
-    subject: `Your subscription expires in ${daysRemaining} days - Sistine AI`,
+    subject: `Your subscription expires in ${daysRemaining} days - VirtuTry`,
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #333;">Subscription Expiry Reminder</h1>
-        <p>Your Sistine AI subscription will expire in <strong>${daysRemaining} days</strong>.</p>
+        <p>Your VirtuTry subscription will expire in <strong>${daysRemaining} days</strong>.</p>
         <p>To continue enjoying uninterrupted access to our services, please renew your subscription.</p>
         <a href="${process.env.NEXT_PUBLIC_APP_URL}/pricing" style="display: inline-block; padding: 12px 24px; background-color: #000; color: #fff; text-decoration: none; border-radius: 6px; margin: 20px 0;">
           Renew Subscription
@@ -218,7 +218,7 @@ export async function sendSubscriptionExpiryReminder(email: string, daysRemainin
 export async function sendLowCreditsNotification(email: string, remainingCredits: number) {
   return sendEmail({
     to: email,
-    subject: 'Low Credits Alert - Sistine AI',
+    subject: 'Low Credits Alert - VirtuTry',
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #ff6b6b;">Low Credits Alert</h1>

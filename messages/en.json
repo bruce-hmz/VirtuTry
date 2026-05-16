@@ -1,9 +1,9 @@
 {
   "common": {
     "brand": {
-      "name": "SISTINE",
-      "tagline": "Sistine AI & Sistine Labs",
-      "copyright": "Copyright © 2025 Sistine AI & Sistine Labs",
+      "name": "VirtuTry",
+      "tagline": "AI Virtual Try-On",
+      "copyright": "Copyright © 2025 VirtuTry",
       "allRightsReserved": "All rights reserved"
     },
     "actions": {
@@ -83,31 +83,31 @@
     }
   },
   "features": {
-    "title": "Everything You Need for Vibe Coding Success",
-    "subtitle": "Stop wasting time on boilerplate. Focus on describing your unique features while Sistine handles the foundation. Ship faster with AI.",
+    "title": "Why VirtuTry",
+    "subtitle": "See how clothes look on you before buying. No fitting room needed — AI previews every outfit on your body so you can shop with confidence.",
     "items": {
       "aiOptimized": {
-        "title": "Built for AI-Assisted Development",
-        "description": "Perfectly structured for Cursor, Windsurf, and Claude Code. Every file, every component optimized for AI understanding and modification."
+        "title": "Ultra-Realistic Try-On",
+        "description": "AI accurately renders fabric texture, fit, and drape on your body proportions — results look like professional photography."
       },
       "zeroPipeline": {
-        "title": "Zero to Production Pipeline",
-        "description": "Authentication, payments, database, deployment - all configured. Just prompt your AI assistant and watch your SaaS come to life."
+        "title": "Upload Once, Try Endlessly",
+        "description": "One photo of yourself unlocks unlimited outfit previews. Mix and match from the wardrobe or upload your own clothes in seconds."
       },
       "nonTechnical": {
-        "title": "Non-Technical Founder Friendly",
-        "description": "Don't know React from Rails? Doesn't matter. If you can describe your idea clearly, you can ship a SaaS product."
+        "title": "Smarter Shopping Decisions",
+        "description": "See the real look before you buy. Avoid ill-fitting purchases, reduce returns, and save on shipping hassles."
       },
       "productionGrade": {
-        "title": "Production-Grade from Day One",
-        "description": "Real users, real payments, real scale. Built on Next.js, PostgreSQL, and Creem - the same stack powering billion-dollar companies."
+        "title": "Privacy-First & Secure",
+        "description": "Your photos are used only for try-on generation, encrypted in transit and at rest. Delete anytime from your history."
       }
     }
   },
   "pricing": {
     "title": "Pricing Plans",
-    "subtitle": "Simple, transparent pricing that scales with your business",
-    "description": "Choose between live recurring subscriptions and a one-time credit top-up. Every price on this page is driven directly from the billing config used at checkout.",
+    "subtitle": "Simple, transparent pricing — pay for what you use",
+    "description": "Choose a plan that fits your shopping habits, or buy credits on demand. Each virtual try-on costs 50 credits.",
     "billing": {
       "monthly": "Monthly",
       "yearly": "Yearly"
@@ -148,24 +148,24 @@
     "tiers": {
       "starter": {
         "name": "Starter",
-        "description": "For validating an AI product before you need high volume.",
+        "description": "For casual shoppers who want to preview outfits before buying.",
         "cta": "Choose Starter",
         "features": [
-          "Access chat, image, and video generation",
-          "1,000 credits on monthly billing",
+          "1,000 credits per month (~20 try-ons)",
           "Annual plan releases 1,000 credits each month",
-          "Buy extra credit packs whenever you need a top-up"
+          "Upload your own clothing images",
+          "Try-on history saved permanently"
         ]
       },
       "pro": {
         "name": "Pro",
-        "description": "For teams and products that need more generation capacity.",
+        "description": "For frequent shoppers and fashion enthusiasts who need more previews.",
         "cta": "Choose Pro",
         "features": [
-          "Access chat, image, and video generation",
-          "10,000 credits on monthly billing",
+          "10,000 credits per month (~200 try-ons)",
           "Annual plan releases 10,000 credits each month",
-          "Better fit for heavier production usage"
+          "Priority generation queue for faster results",
+          "Great for fashion bloggers and power shoppers"
         ]
       },
       "credits": {
@@ -191,128 +191,128 @@
     }
   },
   "testimonials": {
-    "title": "Success Stories from Vibe Coders",
-    "subtitle": "Real developers and non-technical founders sharing their experience building AI SaaS products with Sistine and Vibe Coding.",
+    "title": "What Our Users Say",
+    "subtitle": "Real people sharing how VirtuTry changed the way they shop for clothes.",
     "items": [
       {
-        "name": "Alex Chen",
-        "quote": "I'm not a developer. I'm a marketer. But I shipped my AI SaaS in 3 days using Sistine + Cursor. Now making $5K MRR.",
-        "designation": "Marketing Manager turned Founder"
+        "name": "Sarah Lin",
+        "quote": "I used to return half my online orders. Now I try everything on virtually first — my return rate dropped to almost zero.",
+        "designation": "Online Shopping Enthusiast"
       },
       {
-        "name": "Jordan Lee",
-        "quote": "Spent years learning to code. Now my non-technical co-founder ships features faster than me using Vibe Coding. This is the future.",
-        "designation": "Technical Co-founder"
+        "name": "James Zhou",
+        "quote": "Couldn't decide between three suit colors. AI showed me all three in minutes — decision made.",
+        "designation": "Financial Consultant"
       },
       {
         "name": "Alice Johnson",
-        "quote": "From idea to $10K MRR in 2 months. All vibes, no code. Sistine made it possible to compete with funded startups.",
-        "designation": "Serial Entrepreneur"
+        "quote": "As a fashion blogger, I no longer need to buy every outfit just to photograph it. VirtuTry saves me time and budget.",
+        "designation": "Fashion Blogger"
       },
       {
-        "name": "Bob Smith",
-        "quote": "Built and launched 3 different AI SaaS products this quarter alone. Vibe Coding with Sistine is my secret weapon.",
-        "designation": "Indie Hacker"
+        "name": "Emily Chen",
+        "quote": "Trying on wedding dresses without the pressure of a fitting room — this tool was a lifesaver. The previews look incredibly real.",
+        "designation": "Bride-to-Be"
       },
       {
-        "name": "Cathy Lee",
-        "quote": "I describe features in plain English to Claude Code. Sistine handles the rest. Shipping has never been this fast.",
-        "designation": "Product Manager"
+        "name": "Daniel Park",
+        "quote": "I have body image anxiety and hate fitting rooms. Trying on at home without anyone watching made shopping so much better.",
+        "designation": "Student"
       },
       {
-        "name": "David Wright",
-        "quote": "The authentication, payments, and deployment just work. I focus on unique features. My SaaS was profitable week one.",
-        "designation": "Solo Founder"
+        "name": "Mia Zhao",
+        "quote": "Finally I can pick clothes for my parents without guessing. Upload their photo and instantly see if it fits.",
+        "designation": "Working Professional"
       },
       {
         "name": "Eva Green",
-        "quote": "The efficiency it brings is unmatched. It's a vital tool that has helped us cut costs and improve our end product significantly.",
-        "designation": "Operations Director"
+        "quote": "The results are incredibly natural — even fabric wrinkles and body curves are rendered accurately.",
+        "designation": "Stylist"
       },
       {
         "name": "Frank Moore",
-        "quote": "A robust solution that fits perfectly into our workflow. It has enhanced our team's capabilities and allowed us to tackle more complex projects.",
-        "designation": "Project Manager"
+        "quote": "Dead simple to use. Upload, pick an outfit, generate. The whole flow takes under a minute.",
+        "designation": "Engineer"
       },
       {
         "name": "Grace Hall",
-        "quote": "It's incredibly intuitive and easy to use. Even those without technical expertise can leverage its power to improve their workflows.",
-        "designation": "Marketing Specialist"
+        "quote": "Beautiful interface, intuitive flow. Even my parents figured it out on their own.",
+        "designation": "Freelancer"
       },
       {
         "name": "Henry Ford",
-        "quote": "It has saved us countless hours. Highly recommended for anyone looking to enhance their efficiency and productivity.",
-        "designation": "Operations Analyst"
+        "quote": "Saved me countless trips to physical stores. Absolutely recommend to anyone who shops online.",
+        "designation": "Product Manager"
       },
       {
         "name": "Ivy Wilson",
-        "quote": "A must-have tool for any professional. It's revolutionized the way we approach problem-solving and decision-making.",
-        "designation": "Business Consultant"
+        "quote": "When I'm not confident about my body, seeing the result on VirtuTry first gives me the courage to buy.",
+        "designation": "Entrepreneur"
       },
       {
         "name": "Jack Brown",
-        "quote": "The results are always impressive. This AI has helped us to not only meet but exceed our performance targets.",
-        "designation": "Performance Manager"
+        "quote": "The AI results often look better than I imagined — it made me brave enough to try styles I'd never pick otherwise.",
+        "designation": "Photographer"
       },
       {
         "name": "Kathy Adams",
-        "quote": "It helps us achieve what was once thought impossible. The AI's capabilities are groundbreaking and have opened new avenues for us.",
-        "designation": "Innovation Lead"
+        "quote": "It solves my biggest shopping pain point — what looks good on the model never looks the same on me. Until now.",
+        "designation": "Marketing Specialist"
       },
       {
         "name": "Leo Carter",
-        "quote": "Transformative technology with real impact. It has streamlined our operations and brought unprecedented efficiency to our processes.",
-        "designation": "Technology Strategist"
+        "quote": "For someone who loves experimenting with outfits, this is a treasure. I can try any style risk-free.",
+        "designation": "Fashion Enthusiast"
       },
       {
         "name": "Mia Turner",
-        "quote": "It's simply revolutionary! The way it integrates with our existing systems and enhances them is nothing short of miraculous.",
-        "designation": "Systems Integrator"
+        "quote": "Already recommended it to several friends — everyone loves it. It just works!",
+        "designation": "Stay-at-Home Mom"
       }
     ]
   },
   "companies": {
-    "title": "Built with Industry-Leading Technologies",
-    "subtitle": "Built on modern stack trusted by the world's best teams"
+    "title": "Powered by Advanced AI",
+    "subtitle": "Built on cutting-edge generative AI models for ultra-realistic virtual try-on results"
   },
   "gridFeatures": {
     "aiReady": {
-      "title": "AI-Ready Architecture",
-      "description": "Pre-configured AI workflows for chat, image, and video generation, powered by Volcano Engine by default."
+      "title": "AI-Powered Try-On",
+      "description": "Advanced image generation models accurately render how clothes fit your body — including drape, wrinkles, and lighting."
     },
     "creem": {
-      "title": "Creem Payments",
-      "description": "Complete billing system with subscriptions, usage tracking, and customer portal built-in."
+      "title": "Flexible Credits",
+      "description": "Pay as you go with credits or subscribe for a monthly allowance. Each try-on costs a fixed amount — no surprises."
     },
     "auth": {
-      "title": "Authentication System",
-      "description": "Better Auth with email/password and OAuth. Session management and protected routes ready."
+      "title": "Secure Accounts",
+      "description": "Sign up with email or Google one-click login. Photos are encrypted in transit and at rest."
     },
     "deploy": {
-      "title": "One-Click Deploy",
-      "description": "Deploy to Vercel, Railway, or any platform instantly. Production-ready from day one."
+      "title": "Results in Seconds",
+      "description": "Upload your photo and see try-on results in just a few seconds. Anytime, anywhere."
     },
     "typescript": {
-      "title": "TypeScript + Tailwind",
-      "description": "Modern tech stack with Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui components."
+      "title": "Huge Wardrobe",
+      "description": "A constantly growing clothing library across all styles. You can also upload your own garment images to try on."
     },
     "database": {
-      "title": "Database + ORM",
-      "description": "PostgreSQL with Drizzle ORM. Type-safe queries and migrations configured."
+      "title": "Try-On History",
+      "description": "All results are saved automatically. Compare looks side by side to make the best shopping decision."
     },
     "seo": {
-      "title": "SEO & Marketing",
-      "description": "Meta tags, Open Graph, sitemap, and analytics. Everything for organic growth."
+      "title": "Any Occasion",
+      "description": "Daily outfits, job interviews, date nights, wedding dresses — preview your look for any scenario."
     },
     "vibeCoding": {
-      "title": "Vibe Coding Ready",
-      "description": "Optimized for Cursor, Windsurf, and Claude Code. AI understands every component."
+      "title": "Always Improving",
+      "description": "Our AI models are continuously upgraded for more realistic results. New features ship regularly."
     }
   },
   "cta": {
-    "title": "Ready to Ship Your AI SaaS?",
-    "description": "Join hundreds of developers who launched their SaaS products with Sistine and Vibe Coding.",
-    "button": "Get Code"
+    "title": "Ready to See How Clothes Look on You?",
+    "description": "Sign up free and get try-on credits. See realistic results in seconds.",
+    "button": "Try Free"
   },
   "auth": {
     "login": {
@@ -397,7 +397,7 @@
   },
   "demo": {
     "badge": "Try Before You Buy",
-    "title": "Experience Sistine AI",
+    "title": "Experience VirtuTry",
     "description": "Test our powerful AI features without signing up. Get 3 free trials to explore what we can do.",
     "limitReached": "You've reached the demo limit. Sign up to continue using our AI tools with full features!",
     "signUpNow": "Sign Up Now",
@@ -721,10 +721,10 @@
     "title": "Dashboard",
     "welcome": "Welcome back",
     "welcomeBonus": {
-      "title": "🎉 Welcome to Sistine!",
-      "message": "Congratulations on your successful registration! We've added 300 credits welcome bonus to your account.",
-      "description": "Use these credits to try our AI chat, image generation, video generation, and more features.",
-      "ctaButton": "Try Now",
+      "title": "🎉 Welcome to VirtuTry!",
+      "message": "Congratulations on signing up! We've added 300 credits as a welcome bonus to your account.",
+      "description": "Use these credits to try our virtual try-on feature — see how clothes look on you before you buy!",
+      "ctaButton": "Try On Now",
       "dismissButton": "Got it"
     },
     "cards": {
@@ -913,11 +913,11 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-    "description": "Please reach out to us and we will get back to you at the speed of light.",
+    "subtitle": "Have questions or feedback? We'd love to hear from you and will respond as soon as possible.",
+    "description": "Reach out and we'll get back to you quickly.",
     "testimonial": {
-      "title": "Sistine AI is used by thousands of users",
-      "description": "With lots of AI applications around, Sistine AI stands out with its state of the art AI capabilities."
+      "title": "VirtuTry is trusted by thousands of users",
+      "description": "Helping shoppers see how clothes really look on them before buying — fewer returns, better confidence."
     },
     "form": {
       "nameLabel": "Full Name",
@@ -960,44 +960,44 @@
   "featuredTestimonials": {
     "people": [
       {
-        "name": "John Doe",
-        "designation": "Software Engineer"
+        "name": "Sarah Lin",
+        "designation": "Fashion Enthusiast"
       },
       {
-        "name": "Robert Johnson",
-        "designation": "Product Manager"
+        "name": "James Zhou",
+        "designation": "Consultant"
       },
       {
-        "name": "Jane Smith",
-        "designation": "Data Scientist"
+        "name": "Emily Chen",
+        "designation": "Stylist"
       },
       {
-        "name": "Emily Davis",
-        "designation": "UX Designer"
+        "name": "Daniel Park",
+        "designation": "Student"
       },
       {
-        "name": "Taylor Brooks",
-        "designation": "Full-Stack Developer"
+        "name": "Mia Zhao",
+        "designation": "Working Professional"
       },
       {
-        "name": "Dora",
-        "designation": "The Explorer"
+        "name": "Grace Hall",
+        "designation": "Freelancer"
       }
     ]
   },
   "footer": {
-    "tagline": "Transform your SaaS ideas into reality with the power of AI.",
+    "tagline": "AI virtual try-on — see how clothes look on you before you buy.",
     "product": {
       "title": "Product",
       "features": "Features",
       "pricing": "Pricing",
-      "documentation": "Documentation"
+      "documentation": "Help Center"
     },
     "company": {
-      "title": "Company",
-      "about": "About",
+      "title": "About",
+      "about": "About Us",
       "blog": "Blog",
-      "careers": "Careers"
+      "careers": "Join Us"
     },
     "legal": {
       "title": "Legal",
@@ -1012,8 +1012,8 @@
       "github": "GitHub"
     },
     "newsletter": {
-      "title": "Subscribe to Newsletter",
-      "description": "Get the latest updates and news directly in your inbox.",
+      "title": "Stay Updated",
+      "description": "Get notified about new features and outfit inspiration, straight to your inbox.",
       "placeholder": "Enter your email",
       "subscribe": "Subscribe"
     }

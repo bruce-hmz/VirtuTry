@@ -48,7 +48,7 @@ export const Footer = () => {
     },
     {
       name: t('footer.social.github'),
-      href: "https://github.com/Idea-To-Business/sistine-starter-vibe-to-production",
+      href: "https://github.com/bruce-hmz/VirtuTry",
       external: true,
     },
   ];
@@ -110,7 +110,7 @@ export const Footer = () => {
         </div>
       </div>
       <p className="text-center text-5xl md:text-9xl lg:text-[18rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-muted to-border inset-x-0">
-        SISTINE
+        VIRTUTRY
       </p>
     </div>
   );

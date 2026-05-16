@@ -16,44 +16,37 @@ export const Logo = () => {
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6"
       >
-        {/* 教堂主体 */}
         <path
-          d="M12 2L7 7V21H17V7L12 2Z"
+          d="M12 3L4 9V20H9V14H15V20H20V9L12 3Z"
           fill="currentColor"
-          opacity="0.9"
+          opacity="0.15"
         />
-        {/* 教堂尖顶十字架 */}
         <path
-          d="M12 0V2M11 1H13"
+          d="M8 12C8 9.8 9.8 8 12 8C14.2 8 16 9.8 16 12"
           stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
-        {/* 教堂大门 */}
         <path
-          d="M10.5 21V16C10.5 15.2 11.2 14.5 12 14.5C12.8 14.5 13.5 15.2 13.5 16V21"
-          stroke="hsl(var(--background))"
+          d="M12 8V5M12 5L10 6.5M12 5L14 6.5"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {/* 教堂窗户 */}
-        <circle
-          cx="12"
-          cy="10"
-          r="1.5"
-          stroke="hsl(var(--background))"
-          strokeWidth="1"
+        <rect
+          x="9"
+          y="14"
+          width="6"
+          height="7"
+          rx="1"
+          stroke="currentColor"
+          strokeWidth="1.5"
           fill="none"
         />
-        {/* 侧翼 */}
-        <path
-          d="M5 10L5 21H7V7M19 10L19 21H17V7"
-          fill="currentColor"
-          opacity="0.6"
-        />
+        <line x1="12" y1="14" x2="12" y2="21" stroke="currentColor" strokeWidth="1" opacity="0.5" />
       </svg>
-      <span className="font-medium text-foreground">Sistine AI</span>
+      <span className="font-medium text-foreground">VirtuTry</span>
     </Link>
   );
 };

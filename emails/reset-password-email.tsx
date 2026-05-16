@@ -23,13 +23,13 @@ export const ResetPasswordEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>Reset your password for Sistine AI</Preview>
+      <Preview>Reset your password for VirtuTry</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>Password Reset Request</Heading>
-          
+
           <Text style={text}>
-            We received a request to reset your password for your Sistine AI account.
+            We received a request to reset your password for your VirtuTry account.
             Click the button below to reset it.
           </Text>
 

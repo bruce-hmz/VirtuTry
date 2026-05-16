@@ -25,7 +25,7 @@ export function getDocsBaseOptions(locale: string): BaseLayoutProps {
   return {
     i18n: docsI18n,
     nav: {
-      title: locale === 'zh' ? 'Sistine 文档' : websiteConfig.docsName,
+      title: locale === 'zh' ? 'VirtuTry 文档' : websiteConfig.docsName,
       url: locale === defaultLocale ? '/docs' : `/${locale}/docs`,
     },
   };

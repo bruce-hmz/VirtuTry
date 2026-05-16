@@ -1,9 +1,9 @@
 {
   "common": {
     "brand": {
-      "name": "SISTINE",
-      "tagline": "Sistine AI & Sistine Labs",
-      "copyright": "版权所有 © 2025 Sistine AI & Sistine Labs",
+      "name": "VirtuTry",
+      "tagline": "AI 虚拟试穿",
+      "copyright": "版权所有 © 2025 VirtuTry",
       "allRightsReserved": "保留所有权利"
     },
     "actions": {
@@ -83,31 +83,31 @@
     }
   },
   "features": {
-    "title": "Vibe Coding 成功所需的一切功能",
-    "subtitle": "告别在样板代码上浪费时间。专注于描述您的独特功能，Sistine 会为您处理好底层基础。借助 AI 加速产品交付。",
+    "title": "为何选择 VirtuTry",
+    "subtitle": "购物前先看效果。无需亲临试衣间，AI 帮你预览每一件衣服穿在身上的真实样子，告别凭想象下单与频繁退货。",
     "items": {
       "aiOptimized": {
-        "title": "为 AI 辅助开发而生",
-        "description": "为 Cursor、Windsurf 和 Claude Code 等工具完美结构化。每个文件、每个组件都经过优化，便于 AI 理解和修改。"
+        "title": "超真实试穿效果",
+        "description": "AI 精准还原衣服的版型、面料质感与上身效果，贴合你的身材比例，看起来像专业摄影。"
       },
       "zeroPipeline": {
-        "title": "从零到生产的完整流程",
-        "description": "身份验证、支付、数据库、部署——一切均已配置完毕。只需向您的 AI 助手发出指令，即可见证您的 SaaS 产品诞生。"
+        "title": "上传一次，反复试穿",
+        "description": "只需一张你的照片，就可以无限次尝试不同款式。从衣橱搭配到种草新品，几秒预览结果。"
       },
       "nonTechnical": {
-        "title": "对非技术背景的创始人友好",
-        "description": "分不清 React 和 Rails？没关系。只要您能清晰地描述您的想法，就能成功交付一款 SaaS 产品。"
+        "title": "购物决策更轻松",
+        "description": "看到真实效果再下单，避免买到不合适的款式。降低退货率，节省退换运费和时间。"
       },
       "productionGrade": {
-        "title": "从第一天起即达生产级别",
-        "description": "支持真实用户、真实支付、真实规模。基于 Next.js、PostgreSQL 和 Creem 构建——与价值数十亿美元公司使用的技术栈一致。"
+        "title": "隐私安全，数据可控",
+        "description": "你的照片只用于生成试穿结果，加密传输与存储。可随时在历史记录中删除。"
       }
     }
   },
   "pricing": {
     "title": "定价方案",
-    "subtitle": "简单透明的定价，随您的业务一同扩展",
-    "description": "在真实可购买的订阅方案和一次性点数补充包之间选择。这个页面上的价格直接来自结账使用的账单配置。",
+    "subtitle": "简单透明的定价，按需使用",
+    "description": "选择适合你的套餐，或按需购买积分包。每次虚拟试穿消耗 50 积分。",
     "billing": {
       "monthly": "按月计费",
       "yearly": "按年计费"
@@ -148,24 +148,24 @@
     "tiers": {
       "starter": {
         "name": "入门版",
-        "description": "适合验证 AI 产品方向，还不需要高用量的时候。",
+        "description": "适合偶尔网购、想先看效果再下单的用户。",
         "cta": "选择入门版",
         "features": [
-          "可使用聊天、图片和视频生成功能",
-          "月付方案每月获得 1,000 点",
-          "年付方案按月发放 1,000 点",
-          "需要时可以额外购买点数包"
+          "每月 1,000 积分（约 20 次试穿）",
+          "年付方案按月发放 1,000 积分",
+          "支持上传自己的衣服图片",
+          "试穿历史永久保存"
         ]
       },
       "pro": {
         "name": "专业版",
-        "description": "适合团队协作和更高频率的生成需求。",
+        "description": "适合频繁购物或需要大量搭配预览的用户。",
         "cta": "选择专业版",
         "features": [
-          "可使用聊天、图片和视频生成功能",
-          "月付方案每月获得 10,000 点",
-          "年付方案按月发放 10,000 点",
-          "更适合高频生产环境使用"
+          "每月 10,000 积分（约 200 次试穿）",
+          "年付方案按月发放 10,000 积分",
+          "优先生成队列，更快出图",
+          "适合穿搭博主和重度网购用户"
         ]
       },
       "credits": {
@@ -191,128 +191,128 @@
     }
   },
   "testimonials": {
-    "title": "来自 Vibe Coders 的成功故事",
-    "subtitle": "真实开发者与非技术背景创始人分享他们使用 Sistine 和 Vibe Coding 构建 AI SaaS 产品的经验。",
+    "title": "用户的真实反馈",
+    "subtitle": "来自真实用户的声音，看看 VirtuTry 如何改变他们的购物方式。",
     "items": [
       {
-        "name": "Alex Chen",
-        "quote": "我不是开发者，我是营销人员。但我使用 Sistine + Cursor 在 3 天内发布了我的 AI SaaS。现在每月收入 5000 美元。",
-        "designation": "营销经理转型创始人"
+        "name": "林小雅",
+        "quote": "以前网购衣服总是踩雷，现在先试穿再下单，退货次数从每月好几次降到几乎没有。",
+        "designation": "白领 / 网购达人"
       },
       {
-        "name": "Jordan Lee",
-        "quote": "我花了多年学习编码。现在我的非技术联合创始人使用 Vibe Coding 发布功能比我还快。这就是未来。",
-        "designation": "技术联合创始人"
+        "name": "周睿",
+        "quote": "想买的西装一直犹豫不决，AI 帮我试了三种颜色，几分钟就定下了。",
+        "designation": "金融顾问"
       },
       {
         "name": "Alice Johnson",
-        "quote": "从想法到每月 1 万美元收入只用了 2 个月。全靠感觉，无需编码。Sistine 让我能与有资金支持的创业公司竞争。",
-        "designation": "连续创业者"
+        "quote": "作为时尚博主，搭配方案不用一件件买回家拍照了，VirtuTry 帮我节省了大量时间和预算。",
+        "designation": "时尚博主"
       },
       {
-        "name": "Bob Smith",
-        "quote": "仅在本季度就构建并发布了 3 个不同的 AI SaaS 产品。使用 Sistine 进行 Vibe Coding 是我的秘密武器。",
-        "designation": "独立黑客"
+        "name": "陈晓彤",
+        "quote": "婚礼前想试不同礼服又怕跑试衣间，这个工具简直救命，预览效果非常逼真。",
+        "designation": "准新娘"
       },
       {
-        "name": "Cathy Lee",
-        "quote": "我用普通英语向 Claude Code 描述功能。Sistine 处理其他一切。发布从未如此快速。",
-        "designation": "产品经理"
+        "name": "Daniel Park",
+        "quote": "我有点身材焦虑，不喜欢去试衣间。在家里试穿不会被打扰，购物体验好了很多。",
+        "designation": "学生"
       },
       {
-        "name": "David Wright",
-        "quote": "身份验证、支付和部署都可以直接使用。我专注于独特的功能。我的 SaaS 第一周就盈利了。",
-        "designation": "独立创始人"
+        "name": "赵敏",
+        "quote": "给爸妈选衣服终于不用瞎猜了，把他们的照片传上去就能看出来合不合身。",
+        "designation": "上班族"
       },
       {
         "name": "Eva Green",
-        "quote": "它带来的效率是无与伦比的。这是一个重要的工具，帮助我们削减成本并显著改善了最终产品。",
-        "designation": "运营总监"
+        "quote": "试穿结果非常自然，连衣服褶皱和身材曲线都还原得很到位。",
+        "designation": "造型师"
       },
       {
         "name": "Frank Moore",
-        "quote": "一个完美融入我们工作流程的强大解决方案。它增强了我们团队的能力，让我们能够处理更复杂的项目。",
-        "designation": "项目经理"
+        "quote": "操作非常简单，传图、选衣服、生成，全流程不到一分钟。",
+        "designation": "工程师"
       },
       {
         "name": "Grace Hall",
-        "quote": "它非常直观且易于使用。即使没有技术专业知识的人也可以利用它的强大功能来改善工作流程。",
-        "designation": "市场营销专家"
+        "quote": "界面美观，操作友好，长辈也能轻松上手。",
+        "designation": "自由职业者"
       },
       {
         "name": "Henry Ford",
-        "quote": "它为我们节省了无数小时。强烈推荐给任何想要提高效率和生产力的人。",
-        "designation": "运营分析师"
+        "quote": "为我省下了无数次往返实体店的时间，绝对推荐给所有爱网购的朋友。",
+        "designation": "产品经理"
       },
       {
         "name": "Ivy Wilson",
-        "quote": "任何专业人士的必备工具。它彻底改变了我们解决问题和决策的方式。",
-        "designation": "商业顾问"
+        "quote": "对身材没有自信时，先在 VirtuTry 上看效果，让我购物更有底气。",
+        "designation": "创业者"
       },
       {
         "name": "Jack Brown",
-        "quote": "结果总是令人印象深刻。这个 AI 不仅帮助我们达到了性能目标，还超越了预期。",
-        "designation": "绩效经理"
+        "quote": "AI 生成的效果常常比我自己预想的更好看，让我敢于尝试以前不会选的款式。",
+        "designation": "摄影师"
       },
       {
         "name": "Kathy Adams",
-        "quote": "它帮助我们实现了曾经被认为不可能的事情。AI 的能力是突破性的，为我们开辟了新的道路。",
-        "designation": "创新负责人"
+        "quote": "它解决了我长期以来购物最大的痛点 —— 看图和上身完全不一样。",
+        "designation": "市场专员"
       },
       {
         "name": "Leo Carter",
-        "quote": "具有真正影响力的变革性技术。它简化了我们的运营，为我们的流程带来了前所未有的效率。",
-        "designation": "技术策略师"
+        "quote": "对穿搭灵感无限的人来说，这是个宝藏工具，可以尽情试新风格。",
+        "designation": "穿搭爱好者"
       },
       {
         "name": "Mia Turner",
-        "quote": "简直是革命性的！它与我们现有系统的集成和增强方式简直是奇迹。",
-        "designation": "系统集成师"
+        "quote": "已经推荐给身边好几个朋友，反馈都很好，真的好用！",
+        "designation": "全职妈妈"
       }
     ]
   },
   "companies": {
-    "title": "使用行业领先技术构建",
-    "subtitle": "基于现代技术栈构建，被全球顶尖团队信赖"
+    "title": "先进 AI 技术驱动",
+    "subtitle": "基于前沿生成式 AI 模型，为你呈现逼真的虚拟试穿效果"
   },
   "gridFeatures": {
     "aiReady": {
-      "title": "AI 就绪架构",
-      "description": "预配置聊天、图像和视频生成工作流，默认接入 Volcano Engine。填好密钥即可开始构建。"
+      "title": "AI 精准试穿",
+      "description": "基于先进的图像生成模型，精确还原衣服穿在你身上的真实效果，包括版型、褶皱和光影。"
     },
     "creem": {
-      "title": "Creem 支付",
-      "description": "内置完整的计费系统，包括订阅、使用量跟踪和客户门户。"
+      "title": "灵活积分制",
+      "description": "按需购买积分或订阅套餐，每次试穿消耗固定积分，用多少花多少。"
     },
     "auth": {
-      "title": "身份认证系统",
-      "description": "Better Auth 支持邮箱密码和 OAuth。会话管理和受保护路由已就绪。"
+      "title": "安全账户体系",
+      "description": "支持邮箱注册和 Google 一键登录，照片加密存储，隐私有保障。"
     },
     "deploy": {
-      "title": "一键部署",
-      "description": "即刻部署到 Vercel、Railway 或任何平台。从第一天起即可投入生产。"
+      "title": "秒级出图",
+      "description": "上传照片后几秒即可看到试穿结果，无需等待，随时随地体验。"
     },
     "typescript": {
-      "title": "TypeScript + Tailwind",
-      "description": "现代技术栈包括 Next.js 14、TypeScript、Tailwind CSS 和 shadcn/ui 组件。"
+      "title": "海量衣服库",
+      "description": "持续更新的衣服库涵盖各类风格，也支持上传你自己的衣服图片进行试穿。"
     },
     "database": {
-      "title": "数据库 + ORM",
-      "description": "PostgreSQL 配合 Drizzle ORM。类型安全的查询和迁移已配置。"
+      "title": "试穿历史",
+      "description": "所有试穿结果自动保存，方便回顾对比，帮你做出最佳购物决策。"
     },
     "seo": {
-      "title": "SEO 和营销",
-      "description": "元标签、Open Graph、站点地图和分析。为有机增长准备的一切。"
+      "title": "多场景适用",
+      "description": "日常穿搭、面试着装、约会造型、婚礼礼服……任何场景都能提前预览。"
     },
     "vibeCoding": {
-      "title": "Vibe Coding 就绪",
-      "description": "针对 Cursor、Windsurf 和 Claude Code 进行了优化。AI 能理解每个组件。"
+      "title": "持续进化",
+      "description": "AI 模型持续升级，试穿效果越来越逼真，新功能定期上线。"
     }
   },
   "cta": {
-    "title": "准备好交付您的 AI SaaS 产品了吗？",
-    "description": "加入数百名开发者的行列，他们已经通过 Sistine 和 Vibe Coding 成功发布了自己的 SaaS 产品。",
-    "button": "获取代码"
+    "title": "准备好看看衣服穿在你身上的效果了吗？",
+    "description": "免费注册即可获得试穿积分，几秒钟内看到真实上身效果。",
+    "button": "免费体验"
   },
   "auth": {
     "login": {
@@ -397,7 +397,7 @@
   },
   "demo": {
     "badge": "先试后买",
-    "title": "体验 Sistine AI",
+    "title": "体验 VirtuTry",
     "description": "无需注册即可测试我们强大的 AI 功能。获得 3 次免费试用机会，探索我们的能力。",
     "limitReached": "您已达到演示限制。立即注册以继续使用完整功能的 AI 工具！",
     "signUpNow": "立即注册",
@@ -721,10 +721,10 @@
     "title": "仪表盘",
     "welcome": "欢迎回来",
     "welcomeBonus": {
-      "title": "🎉 欢迎加入 Sistine!",
+      "title": "🎉 欢迎加入 VirtuTry!",
       "message": "恭喜您成功注册！我们已为您的账户赠送 300 积分新人礼包。",
-      "description": "这些积分可用于体验我们的 AI 对话、图像生成、视频生成等功能。",
-      "ctaButton": "立即体验",
+      "description": "这些积分可用于体验虚拟试穿功能，快去试试看衣服穿在你身上的效果吧！",
+      "ctaButton": "立即试穿",
       "dismissButton": "知道了"
     },
     "cards": {
@@ -912,11 +912,11 @@
   },
   "contact": {
     "title": "联系我们",
-    "subtitle": "我们很乐意倾听您的声音。给我们发送消息，我们会尽快回复。",
-    "description": "请联系我们，我们会以光速回复您。",
+    "subtitle": "有任何问题或建议？欢迎随时联系我们，我们会尽快回复。",
+    "description": "请联系我们，我们会以最快速度回复您。",
     "testimonial": {
-      "title": "Sistine AI 被数千名用户使用",
-      "description": "在众多 AI 应用中，Sistine AI 以其顶级的 AI 能力脱颖而出。"
+      "title": "VirtuTry 已服务数千名用户",
+      "description": "帮助用户在购物前看到真实试穿效果，减少退货，提升购物体验。"
     },
     "form": {
       "nameLabel": "姓名",
@@ -959,44 +959,44 @@
   "featuredTestimonials": {
     "people": [
       {
-        "name": "张伟",
-        "designation": "软件工程师"
+        "name": "林小雅",
+        "designation": "网购达人"
       },
       {
-        "name": "王强",
-        "designation": "产品经理"
+        "name": "周睿",
+        "designation": "金融顾问"
       },
       {
-        "name": "李娜",
-        "designation": "数据科学家"
+        "name": "陈晓彤",
+        "designation": "造型师"
       },
       {
-        "name": "陈婷",
-        "designation": "UX设计师"
+        "name": "Daniel Park",
+        "designation": "学生"
       },
       {
-        "name": "赵明",
-        "designation": "全栈开发者"
+        "name": "赵敏",
+        "designation": "上班族"
       },
       {
-        "name": "朱悦",
-        "designation": "探索者"
+        "name": "Grace Hall",
+        "designation": "自由职业者"
       }
     ]
   },
   "footer": {
-    "tagline": "利用 AI 的力量，将您的 SaaS 创意转化为现实。",
+    "tagline": "AI 虚拟试穿，让你购物前先看效果。",
     "product": {
       "title": "产品",
-      "features": "功能",
+      "features": "功能介绍",
       "pricing": "定价",
-      "documentation": "文档"
+      "documentation": "帮助文档"
     },
     "company": {
-      "title": "公司",
+      "title": "关于",
       "about": "关于我们",
       "blog": "博客",
-      "careers": "招聘"
+      "careers": "加入我们"
     },
     "legal": {
       "title": "法律",
@@ -1011,8 +1011,8 @@
       "github": "GitHub"
     },
     "newsletter": {
-      "title": "订阅邮件",
-      "description": "获取最新动态和资讯，直接发送到您的邮箱。",
+      "title": "订阅动态",
+      "description": "获取新功能上线通知和穿搭灵感，直接发送到您的邮箱。",
       "placeholder": "输入您的邮箱",
       "subscribe": "订阅"
     }
