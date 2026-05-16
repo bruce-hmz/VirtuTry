@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 import { Upload, X, AlertCircle } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -9,7 +9,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 interface ImageUploaderProps {
-  onImageSelect: (base64: string) => void;
+  onImageSelect: (url: string) => void;
   onClear: () => void;
   previewUrl?: string;
   label: string;
@@ -28,9 +28,11 @@ export function ImageUploader({
   const [dragOver, setDragOver] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [localPreview, setLocalPreview] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   const handleFile = useCallback(
-    (file: File) => {
+    async (file: File) => {
       setError(null);
       if (!file.type.startsWith("image/")) {
         setError("Please select an image file");
@@ -45,16 +47,41 @@ export function ImageUploader({
         return;
       }
 
+      const localUrl = URL.createObjectURL(file);
+      setLocalPreview(localUrl);
       setLoading(true);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result as string;
-        if (result) {
-          onImageSelect(result);
+
+      try {
+        abortRef.current?.abort();
+        const controller = new AbortController();
+        abortRef.current = controller;
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const res = await fetch("/api/upload/image", {
+          method: "POST",
+          body: formData,
+          signal: controller.signal,
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.error || "Upload failed");
         }
+
+        const data = await res.json();
+        URL.revokeObjectURL(localUrl);
+        setLocalPreview(null);
+        onImageSelect(data.url);
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        URL.revokeObjectURL(localUrl);
+        setLocalPreview(null);
+        setError(err instanceof Error ? err.message : "Upload failed");
+      } finally {
         setLoading(false);
-      };
-      reader.readAsDataURL(file);
+      }
     },
     [onImageSelect]
   );
@@ -81,12 +108,13 @@ export function ImageUploader({
     <div className={cn("space-y-2", className)}>
       <label className="text-sm font-medium text-foreground">{label}</label>
 
-      {previewUrl ? (
+      {(previewUrl || localPreview) ? (
         <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden border border-border bg-muted">
           <Image
-            src={previewUrl}
+            src={localPreview || previewUrl!}
             alt={label}
             fill
+            unoptimized
             className="object-cover"
           />
           <button

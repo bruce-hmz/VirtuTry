@@ -24,7 +24,7 @@ export default function TryOnPage() {
 
   const [personImage, setPersonImage] = useState<string | null>(null);
   const [selectedClothing, setSelectedClothing] = useState<ClothingItem[]>([]);
-  const [customClothingImages, setCustomClothingImages] = useState<string[]>([]);
+  const [customClothingUrls, setCustomClothingUrls] = useState<string[]>([]);
   const [showWardrobe, setShowWardrobe] = useState(false);
 
   const [status, setStatus] = useState<"idle" | "pending" | "processing" | "completed" | "failed">("idle");
@@ -84,7 +84,7 @@ export default function TryOnPage() {
     setLoadingWardrobe(false);
   };
 
-  const totalClothing = selectedClothing.length + customClothingImages.length;
+  const totalClothing = selectedClothing.length + customClothingUrls.length;
 
   const pollResult = useCallback(async (tid: string) => {
     const maxAttempts = 60;
@@ -138,9 +138,9 @@ export default function TryOnPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          personImageBase64: personImage,
+          personImageUrl: personImage,
           clothingIds: selectedClothing.map((c) => c.id),
-          customClothingImages: customClothingImages,
+          customClothingUrls: customClothingUrls,
         }),
       });
 
@@ -183,7 +183,7 @@ export default function TryOnPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mx-auto max-w-7xl px-4 pt-24 pb-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -254,9 +254,9 @@ export default function TryOnPage() {
                     <ImageUploader
                       key={`custom-${i}`}
                       label={`Clothing ${totalClothing + i + 1}`}
-                      onImageSelect={(base64) => setCustomClothingImages((prev) => [...prev, base64])}
-                      onClear={() => setCustomClothingImages((prev) => prev.filter((_, idx) => idx !== i))}
-                      previewUrl={customClothingImages[i]}
+                      onImageSelect={(url) => setCustomClothingUrls((prev) => [...prev, url])}
+                      onClear={() => setCustomClothingUrls((prev) => prev.filter((_, idx) => idx !== i))}
+                      previewUrl={customClothingUrls[i]}
                       disabled={status === "pending" || status === "processing"}
                     />
                   ))}
@@ -325,7 +325,7 @@ export default function TryOnPage() {
 
           {/* Right: Quota Panel */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 p-6 rounded-xl border border-border bg-card">
+            <div className="sticky top-28 p-6 rounded-xl border border-border bg-card">
               <h3 className="font-semibold text-foreground mb-4">{t("usage")}</h3>
               <QuotaDisplay
                 quota={quota}

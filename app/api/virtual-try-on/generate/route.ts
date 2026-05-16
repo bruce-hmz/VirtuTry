@@ -3,7 +3,6 @@ import {
   canUserTryOn,
   createVirtualTryOn,
   deductVirtualTryOnQuota,
-  initializeUserQuotas,
 } from "@/lib/virtualtry";
 import { generateVirtualTryOn } from "@/lib/volcano-engine/seedream";
 import { db } from "@/lib/db";
@@ -14,9 +13,18 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 interface GenerateRequest {
-  personImageBase64: string;
-  clothingIds?: string[]; // IDs from clothing library
-  customClothingImages?: string[]; // Base64 images uploaded by user
+  personImageUrl: string;
+  clothingIds?: string[];
+  customClothingUrls?: string[];
+}
+
+async function downloadAsBase64(url: string): Promise<string> {
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Failed to download image: ${response.status}`);
+
+  const contentType = response.headers.get("content-type") || "image/png";
+  const buffer = Buffer.from(await response.arrayBuffer());
+  return `data:${contentType};base64,${buffer.toString("base64")}`;
 }
 
 export async function POST(request: NextRequest) {
@@ -34,25 +42,17 @@ export async function POST(request: NextRequest) {
 
     // 2. Parse request body
     const body = (await request.json()) as GenerateRequest;
-    const { personImageBase64, clothingIds = [], customClothingImages = [] } = body;
+    const { personImageUrl, clothingIds = [], customClothingUrls = [] } = body;
 
     // 3. Validate input
-    if (!personImageBase64 || typeof personImageBase64 !== "string") {
+    if (!personImageUrl || typeof personImageUrl !== "string") {
       return NextResponse.json(
-        { error: "Person image (Base64 format) is required" },
+        { error: "Person image URL is required" },
         { status: 400 }
       );
     }
 
-    // Check Base64 format
-    if (!personImageBase64.startsWith("data:image/")) {
-      return NextResponse.json(
-        { error: "Invalid image format. Expected data:image/...;base64,..." },
-        { status: 400 }
-      );
-    }
-
-    const totalClothing = clothingIds.length + customClothingImages.length;
+    const totalClothing = clothingIds.length + customClothingUrls.length;
     if (totalClothing === 0) {
       return NextResponse.json(
         { error: "At least one clothing image is required" },
@@ -65,11 +65,14 @@ export async function POST(request: NextRequest) {
     if (!allowed) {
       return NextResponse.json(
         { error: reason || "Try-on not allowed" },
-        { status: 429 } // Rate limit status
+        { status: 429 }
       );
     }
 
-    // 5. Fetch clothing images from library
+    // 5. Download person image and convert to Base64
+    const personImageBase64 = await downloadAsBase64(personImageUrl);
+
+    // 6. Fetch clothing images from library + custom uploads, convert to Base64
     let clothingImagesBase64: string[] = [];
 
     if (clothingIds.length > 0) {
@@ -84,19 +87,20 @@ export async function POST(request: NextRequest) {
         );
 
       for (const cloth of dbClothings) {
-        // Use cached Base64 if available, otherwise fetch from URL
         if (cloth.imageBase64) {
           clothingImagesBase64.push(cloth.imageBase64);
         } else if (cloth.imageUrl) {
-          // TODO: Fetch from URL and convert to Base64 if needed
-          // For now, just use the URL as-is (Seedream should support URLs)
-          clothingImagesBase64.push(cloth.imageUrl);
+          const base64 = await downloadAsBase64(cloth.imageUrl);
+          clothingImagesBase64.push(base64);
         }
       }
     }
 
-    // Add custom clothing images
-    clothingImagesBase64.push(...customClothingImages);
+    // Download custom clothing images from URLs
+    for (const url of customClothingUrls) {
+      const base64 = await downloadAsBase64(url);
+      clothingImagesBase64.push(base64);
+    }
 
     if (clothingImagesBase64.length === 0) {
       return NextResponse.json(
@@ -105,7 +109,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 6. Get user tier for watermark decision
+    // 7. Get user tier for watermark decision
     const userData = await db
       .select()
       .from(userTable)
@@ -115,7 +119,7 @@ export async function POST(request: NextRequest) {
     const userTier = userData[0]?.planKey && userData[0].planKey !== "free" ? "paid" : "free";
     const hasWatermark = userTier === "free";
 
-    // 7. Call Seedream API
+    // 8. Call Seedream API
     console.log(`[VirtualTryOn] Generating for user ${userId} (${userTier})`);
 
     const { taskId, status } = await generateVirtualTryOn(
@@ -123,7 +127,7 @@ export async function POST(request: NextRequest) {
       clothingImagesBase64
     );
 
-    // 8. Create database record
+    // 9. Create database record
     const tryOnRecord = await createVirtualTryOn(
       userId,
       personImageBase64,
@@ -132,12 +136,12 @@ export async function POST(request: NextRequest) {
       hasWatermark
     );
 
-    // 9. Deduct quota and credits (immediately deducted, failure won't refund)
+    // 10. Deduct quota and credits
     await deductVirtualTryOnQuota(userId);
 
     console.log(`[VirtualTryOn] Created record ${tryOnRecord.id} for task ${taskId}`);
 
-    // 10. Return response
+    // 11. Return response
     return NextResponse.json({
       success: true,
       taskId,
