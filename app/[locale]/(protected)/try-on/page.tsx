@@ -36,8 +36,11 @@ export default function TryOnPage() {
 
   const [quota, setQuota] = useState({ daily: { quotaLimit: 3, quotaUsed: 0 }, monthly: { quotaLimit: 90, quotaUsed: 0 } });
   const [credits, setCredits] = useState(0);
+  const [planKey, setPlanKey] = useState("free");
   const [wardrobeItems, setWardrobeItems] = useState<ClothingItem[]>([]);
   const [loadingWardrobe, setLoadingWardrobe] = useState(false);
+
+  const maxClothing = planKey && planKey !== "free" ? 3 : 1;
 
   useEffect(() => {
     fetchUserData();
@@ -51,7 +54,7 @@ export default function TryOnPage() {
           .then((res) => res.ok ? res.json() : { items: [] })
           .then((data) => {
             const items = (data.items || []).filter((c: ClothingItem) => ids.includes(c.id));
-            setSelectedClothing(items.slice(0, 3));
+            setSelectedClothing(items.slice(0, 1));
           });
       }
     }
@@ -64,6 +67,7 @@ export default function TryOnPage() {
         const data = await res.json();
         setQuota({ daily: data.daily, monthly: data.monthly });
         setCredits(data.credits ?? 0);
+        setPlanKey(data.planKey ?? "free");
       }
     } catch (err) {
       console.error("Failed to fetch user data:", err);
@@ -168,8 +172,7 @@ export default function TryOnPage() {
     setSelectedClothing((prev) => {
       const exists = prev.find((c) => c.id === item.id);
       if (exists) return prev.filter((c) => c.id !== item.id);
-      const maxItems = 3;
-      if (prev.length >= maxItems) return prev;
+      if (prev.length >= maxClothing) return prev;
       return [...prev, item];
     });
   };
@@ -220,7 +223,7 @@ export default function TryOnPage() {
               <div className="md:col-span-2 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-medium text-foreground">
-                    {t("clothing")} ({totalClothing}/3)
+                    {t("clothing")} ({totalClothing}/{maxClothing})
                   </h3>
                   <button
                     type="button"
@@ -250,7 +253,7 @@ export default function TryOnPage() {
                   ))}
 
                   {/* Slots for custom uploads */}
-                  {Array.from({ length: 3 - selectedClothing.length }).map((_, i) => (
+                  {Array.from({ length: maxClothing - selectedClothing.length }).map((_, i) => (
                     <ImageUploader
                       key={`custom-${i}`}
                       label={`Clothing ${totalClothing + i + 1}`}
