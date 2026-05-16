@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Wand2, History, Shirt } from "lucide-react";
+import { Wand2, History, Shirt, Lock } from "lucide-react";
 import Link from "next/link";
 import { ImageUploader } from "@/features/virtual-try-on/components/image-uploader";
 import { VirtualTryOnResult } from "@/features/virtual-try-on/components/try-on-result";
@@ -253,16 +253,34 @@ export default function TryOnPage() {
                   ))}
 
                   {/* Slots for custom uploads */}
-                  {Array.from({ length: maxClothing - selectedClothing.length }).map((_, i) => (
-                    <ImageUploader
-                      key={`custom-${i}`}
-                      label={`Clothing ${totalClothing + i + 1}`}
-                      onImageSelect={(url) => setCustomClothingUrls((prev) => [...prev, url])}
-                      onClear={() => setCustomClothingUrls((prev) => prev.filter((_, idx) => idx !== i))}
-                      previewUrl={customClothingUrls[i]}
-                      disabled={status === "pending" || status === "processing"}
-                    />
-                  ))}
+                  {Array.from({ length: 3 - selectedClothing.length }).map((_, i) => {
+                    const slotIndex = selectedClothing.length + i;
+                    const isLocked = maxClothing <= slotIndex;
+
+                    if (isLocked) {
+                      return (
+                        <div
+                          key={`locked-${i}`}
+                          className="relative aspect-square rounded-lg border-2 border-dashed border-border bg-muted/50 flex flex-col items-center justify-center cursor-pointer hover:border-primary/50 transition-colors"
+                          onClick={() => router.push(`/${locale}/pricing`)}
+                        >
+                          <Lock className="h-5 w-5 text-muted-foreground mb-1" />
+                          <span className="text-xs text-muted-foreground">Upgrade</span>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <ImageUploader
+                        key={`custom-${i}`}
+                        label={`Clothing ${totalClothing + i + 1}`}
+                        onImageSelect={(url) => setCustomClothingUrls((prev) => [...prev, url])}
+                        onClear={() => setCustomClothingUrls((prev) => prev.filter((_, idx) => idx !== i))}
+                        previewUrl={customClothingUrls[i]}
+                        disabled={status === "pending" || status === "processing"}
+                      />
+                    );
+                  })}
                 </div>
 
                 {/* Wardrobe picker */}
