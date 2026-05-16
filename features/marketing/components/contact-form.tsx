@@ -26,7 +26,7 @@ const socials = [
   },
   {
     title: "github",
-    href: "https://github.com/Idea-To-Business/sistine-starter-vibe-to-production",
+    href: "https://github.com/firstdraft-work/VirtuTry",
     icon: (
       <IconBrandGithub className="h-5 w-5 text-muted-foreground transition-colors hover:text-foreground" />
     ),

@@ -6,7 +6,7 @@ import {
 
 describe("account settings helpers", () => {
   it("normalizes profile names before saving them", () => {
-    expect(normalizeProfileName("  Sistine    Builder  ")).toBe("Sistine Builder");
+    expect(normalizeProfileName("  VirtuTry    Builder  ")).toBe("VirtuTry Builder");
   });
 
   it("rejects names that are too short after trimming", () => {

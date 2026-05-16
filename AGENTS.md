@@ -4,7 +4,7 @@ This file gives coding agents an accurate working map for this repository.
 
 ## What This Repo Is
 
-`sistine-starter-vibe-to-production` is a production-oriented AI SaaS starter for teaching AI coding and launching commercial AI products quickly.
+`VirtuTry` is a production-oriented AI SaaS starter for teaching AI coding and launching commercial AI products quickly.
 
 The repo already includes:
 

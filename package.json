@@ -1,11 +1,11 @@
 {
-  "name": "sistine-starter-vibe-to-production",
+  "name": "virtutry",
   "version": "0.1.0",
   "description": "The first AI SaaS starter built for vibe coding. Ship production-ready AI SaaS using Cursor, Claude Code, or Windsurf.",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Idea-To-Business/sistine-starter-vibe-to-production.git"
+    "url": "git+https://github.com/firstdraft-work/VirtuTry.git"
   },
   "keywords": [
     "vibe-coding",
@@ -16,7 +16,7 @@
     "claude-code",
     "windsurf"
   ],
-  "author": "Sistine AI & Sistine Labs",
+  "author": "VirtuTry",
   "license": "MIT",
   "scripts": {
     "predev": "pnpm run sync:fumadocs-style",

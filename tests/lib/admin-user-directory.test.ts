@@ -21,13 +21,13 @@ describe("admin user directory helpers", () => {
   it("falls back to the first page for invalid input and array params", () => {
     expect(
       normalizeAdminUsersDirectoryFilters({
-        query: ["  sistine  ", "ignored"],
+        query: ["  virtutry  ", "ignored"],
         page: ["0", "2"],
       })
     ).toEqual({
       currentPage: 1,
       pageSize: ADMIN_USERS_PAGE_SIZE,
-      query: "sistine",
+      query: "virtutry",
     });
   });
 

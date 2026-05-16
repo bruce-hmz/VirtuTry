@@ -21,7 +21,7 @@ describe("form schemas", () => {
 
   it("trims marketing form values before validation", () => {
     const result = contactSchema.safeParse({
-      name: "  Sistine  ",
+      name: "  VirtuTry  ",
       email: "  team@example.com  ",
       company: "  Example Inc  ",
       message: "  Hello there  ",
@@ -29,7 +29,7 @@ describe("form schemas", () => {
 
     expect(result.success).toBe(true);
     expect(result.data).toEqual({
-      name: "Sistine",
+      name: "VirtuTry",
       email: "team@example.com",
       company: "Example Inc",
       message: "Hello there",

@@ -10,10 +10,10 @@ describe("docs metadata helpers", () => {
 
   it("falls back to a localized description when a page omits one", () => {
     expect(getDocsDescription("en", "Quickstart")).toBe(
-      "Quickstart documentation from Sistine Docs.",
+      "Quickstart documentation from VirtuTry Docs.",
     );
     expect(getDocsDescription("zh", "快速开始")).toBe(
-      "快速开始 的使用文档，来自 Sistine Docs。",
+      "快速开始 的使用文档，来自 VirtuTry Docs。",
     );
   });
 
@@ -24,15 +24,15 @@ describe("docs metadata helpers", () => {
       title: "快速开始",
     });
 
-    expect(metadata.title).toBe("快速开始 | Sistine Docs");
-    expect(metadata.description).toBe("快速开始 的使用文档，来自 Sistine Docs。");
+    expect(metadata.title).toBe("快速开始 | VirtuTry Docs");
+    expect(metadata.description).toBe("快速开始 的使用文档，来自 VirtuTry Docs。");
     expect(metadata.alternates?.canonical).toBe("http://localhost:3000/zh/docs/quickstart");
     expect(metadata.alternates?.languages).toEqual({
       en: "http://localhost:3000/docs/quickstart",
       zh: "http://localhost:3000/zh/docs/quickstart",
     });
     expect(metadata.openGraph).toMatchObject({
-      title: "快速开始 | Sistine Docs",
+      title: "快速开始 | VirtuTry Docs",
       locale: "zh_CN",
       url: "http://localhost:3000/zh/docs/quickstart",
     });

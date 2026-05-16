@@ -1,4 +1,4 @@
-# Sistine Starter: Vibe to Production
+# VirtuTry: Vibe to Production
 
 <div align="center">
   <h3>
@@ -22,7 +22,7 @@
 
 **Vibe Coding** is a revolutionary development approach where you describe what you want in plain language to AI coding assistants, and they write production-ready code for you. No traditional coding required.
 
-With Sistine Starter, you can:
+With VirtuTry, you can:
 - 🎨 **Describe** features in plain English
 - 🤖 **AI writes** production-ready code
 - 🚢 **Ship** to real users in hours
@@ -80,8 +80,8 @@ If you already received a source ZIP through the course community, unzip it and 
 
 If you want to fetch it with Git:
 ```bash
-git clone https://github.com/Idea-To-Business/sistine-starter-vibe-to-production.git
-cd sistine-starter-vibe-to-production
+git clone https://github.com/firstdraft-work/VirtuTry.git
+cd VirtuTry
 ```
 
 2. **Install dependencies**
@@ -180,11 +180,11 @@ pnpm db:studio    # Open Drizzle Studio
 
 ### 🌟 Success Stories
 
-> "I'm not a developer. I'm a marketer. But I shipped my AI SaaS in 3 days using Sistine + Cursor. Now making $5K MRR." - Marketing Manager turned Founder
+> "I'm not a developer. I'm a marketer. But I shipped my AI SaaS in 3 days using VirtuTry + Cursor. Now making $5K MRR." - Marketing Manager turned Founder
 
 > "From idea to $10K MRR in 2 months. All vibes, no code." - Serial Entrepreneur
 
-> "Built and launched 3 different AI SaaS products this quarter alone. Vibe Coding with Sistine is my secret weapon." - Indie Hacker
+> "Built and launched 3 different AI SaaS products this quarter alone. Vibe Coding with VirtuTry is my secret weapon." - Indie Hacker
 
 ### 🤝 Contributing
 
@@ -203,7 +203,7 @@ MIT License - see [LICENSE](./LICENSE) for details.
 
 **Vibe Coding** 是一种革命性的开发方式，你只需用自然语言向 AI 编程助手描述你想要的功能，AI 就会为你编写生产级代码。无需传统编程技能。
 
-使用 Sistine Starter，你可以：
+使用 VirtuTry，你可以：
 - 🎨 **描述**功能需求（用中文或英文）
 - 🤖 **AI 编写**生产级代码
 - 🚢 **发布**给真实用户（几小时内）
@@ -255,8 +255,8 @@ MIT License - see [LICENSE](./LICENSE) for details.
 
 如果你想通过 Git 获取源码：
 ```bash
-git clone https://github.com/Idea-To-Business/sistine-starter-vibe-to-production.git
-cd sistine-starter-vibe-to-production
+git clone https://github.com/firstdraft-work/VirtuTry.git
+cd VirtuTry
 ```
 
 2. **安装依赖**
@@ -355,11 +355,11 @@ pnpm db:studio    # 打开 Drizzle Studio
 
 ### 🌟 成功案例
 
-> "我不是开发者，我是营销人员。但我用 Sistine + Cursor 在 3 天内发布了我的 AI SaaS。现在月收入 $5K。" - 营销经理转型创始人
+> "我不是开发者，我是营销人员。但我用 VirtuTry + Cursor 在 3 天内发布了我的 AI SaaS。现在月收入 $5K。" - 营销经理转型创始人
 
 > "从想法到月收入 $10K 只用了 2 个月。全靠 Vibe，没写代码。" - 连续创业者
 
-> "仅这个季度就构建并发布了 3 个不同的 AI SaaS 产品。Sistine 的 Vibe Coding 是我的秘密武器。" - 独立开发者
+> "仅这个季度就构建并发布了 3 个不同的 AI SaaS 产品。VirtuTry 的 Vibe Coding 是我的秘密武器。" - 独立开发者
 
 ### 🤝 贡献
 
@@ -374,9 +374,9 @@ MIT 许可证 - 详情见 [LICENSE](./LICENSE)。
 <div align="center">
   <h3>🚀 Start Vibe Coding Today!</h3>
   <p>
-    <a href="https://github.com/Idea-To-Business/sistine-starter-vibe-to-production">GitHub</a> •
+    <a href="https://github.com/firstdraft-work/VirtuTry">GitHub</a> •
     <a href="https://raphael.app">Website</a> •
     <a href="https://twitter.com/bourneliu66">Twitter</a>
   </p>
-  <p>Made with ❤️ by <a href="https://sistine.ai">Sistine AI</a> & Sistine Labs</p>
+  <p>Made with ❤️ by VirtuTry Team</p>
 </div>

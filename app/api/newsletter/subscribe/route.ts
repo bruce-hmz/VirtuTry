@@ -70,11 +70,11 @@ export async function POST(request: NextRequest) {
       // Send reactivation confirmation
       await sendEmail({
         to: email,
-        subject: "Welcome back to Sistine AI Newsletter!",
+        subject: "Welcome back to VirtuTry Newsletter!",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #333;">Welcome Back!</h1>
-            <p>You've successfully resubscribed to the Sistine AI newsletter.</p>
+            <p>You've successfully resubscribed to the VirtuTry newsletter.</p>
             <p>You'll receive our latest updates and insights directly in your inbox.</p>
             <p style="color: #999; font-size: 12px; margin-top: 30px;">
               To unsubscribe, click <a href="${process.env.NEXT_PUBLIC_APP_URL}/api/newsletter/unsubscribe?token=${subscription.unsubscribeToken}">here</a>
@@ -118,10 +118,10 @@ export async function POST(request: NextRequest) {
     // Send welcome email
     await sendEmail({
       to: email,
-      subject: "Welcome to Sistine AI Newsletter!",
+      subject: "Welcome to VirtuTry Newsletter!",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #333;">Welcome to Sistine AI Newsletter!</h1>
+          <h1 style="color: #333;">Welcome to VirtuTry Newsletter!</h1>
           <p>Thank you for subscribing! You'll receive our latest updates and insights directly in your inbox.</p>
           <h3>What to expect:</h3>
           <ul>

@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Unsubscribed - Sistine AI</title>
+        <title>Unsubscribed - VirtuTry</title>
         <style>
           body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -101,13 +101,13 @@ export async function GET(request: NextRequest) {
         <div class="container">
           <h1>You've been unsubscribed</h1>
           <p>
-            You have been successfully unsubscribed from the Sistine AI newsletter. 
+            You have been successfully unsubscribed from the VirtuTry newsletter.
             We're sorry to see you go!
           </p>
           <p>
             You can resubscribe anytime from our website.
           </p>
-          <a href="${process.env.NEXT_PUBLIC_APP_URL}">Back to Sistine AI</a>
+          <a href="${process.env.NEXT_PUBLIC_APP_URL}">Back to VirtuTry</a>
         </div>
       </body>
       </html>
