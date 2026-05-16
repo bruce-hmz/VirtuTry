@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Wand2, History, Shirt } from "lucide-react";
+import { Wand2, History, Shirt, Lock } from "lucide-react";
 import Link from "next/link";
 import { ImageUploader } from "@/features/virtual-try-on/components/image-uploader";
 import { VirtualTryOnResult } from "@/features/virtual-try-on/components/try-on-result";
@@ -24,7 +24,7 @@ export default function TryOnPage() {
 
   const [personImage, setPersonImage] = useState<string | null>(null);
   const [selectedClothing, setSelectedClothing] = useState<ClothingItem[]>([]);
-  const [customClothingImages, setCustomClothingImages] = useState<string[]>([]);
+  const [customClothingUrls, setCustomClothingUrls] = useState<string[]>([]);
   const [showWardrobe, setShowWardrobe] = useState(false);
 
   const [status, setStatus] = useState<"idle" | "pending" | "processing" | "completed" | "failed">("idle");
@@ -36,8 +36,11 @@ export default function TryOnPage() {
 
   const [quota, setQuota] = useState({ daily: { quotaLimit: 3, quotaUsed: 0 }, monthly: { quotaLimit: 90, quotaUsed: 0 } });
   const [credits, setCredits] = useState(0);
+  const [planKey, setPlanKey] = useState("free");
   const [wardrobeItems, setWardrobeItems] = useState<ClothingItem[]>([]);
   const [loadingWardrobe, setLoadingWardrobe] = useState(false);
+
+  const maxClothing = planKey && planKey !== "free" ? 3 : 1;
 
   useEffect(() => {
     fetchUserData();
@@ -51,7 +54,7 @@ export default function TryOnPage() {
           .then((res) => res.ok ? res.json() : { items: [] })
           .then((data) => {
             const items = (data.items || []).filter((c: ClothingItem) => ids.includes(c.id));
-            setSelectedClothing(items.slice(0, 3));
+            setSelectedClothing(items.slice(0, 1));
           });
       }
     }
@@ -64,6 +67,7 @@ export default function TryOnPage() {
         const data = await res.json();
         setQuota({ daily: data.daily, monthly: data.monthly });
         setCredits(data.credits ?? 0);
+        setPlanKey(data.planKey ?? "free");
       }
     } catch (err) {
       console.error("Failed to fetch user data:", err);
@@ -84,7 +88,7 @@ export default function TryOnPage() {
     setLoadingWardrobe(false);
   };
 
-  const totalClothing = selectedClothing.length + customClothingImages.length;
+  const totalClothing = selectedClothing.length + customClothingUrls.length;
 
   const pollResult = useCallback(async (tid: string) => {
     const maxAttempts = 60;
@@ -138,9 +142,9 @@ export default function TryOnPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          personImageBase64: personImage,
+          personImageUrl: personImage,
           clothingIds: selectedClothing.map((c) => c.id),
-          customClothingImages: customClothingImages,
+          customClothingUrls: customClothingUrls,
         }),
       });
 
@@ -168,8 +172,7 @@ export default function TryOnPage() {
     setSelectedClothing((prev) => {
       const exists = prev.find((c) => c.id === item.id);
       if (exists) return prev.filter((c) => c.id !== item.id);
-      const maxItems = 3;
-      if (prev.length >= maxItems) return prev;
+      if (prev.length >= maxClothing) return prev;
       return [...prev, item];
     });
   };
@@ -182,8 +185,8 @@ export default function TryOnPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-16">
-      <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-7xl px-4 pt-24 pb-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -220,7 +223,7 @@ export default function TryOnPage() {
               <div className="md:col-span-2 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-medium text-foreground">
-                    {t("clothing")} ({totalClothing}/3)
+                    {t("clothing")} ({totalClothing}/{maxClothing})
                   </h3>
                   <button
                     type="button"
@@ -250,16 +253,34 @@ export default function TryOnPage() {
                   ))}
 
                   {/* Slots for custom uploads */}
-                  {Array.from({ length: 3 - selectedClothing.length }).map((_, i) => (
-                    <ImageUploader
-                      key={`custom-${i}`}
-                      label={`Clothing ${totalClothing + i + 1}`}
-                      onImageSelect={(base64) => setCustomClothingImages((prev) => [...prev, base64])}
-                      onClear={() => setCustomClothingImages((prev) => prev.filter((_, idx) => idx !== i))}
-                      previewUrl={customClothingImages[i]}
-                      disabled={status === "pending" || status === "processing"}
-                    />
-                  ))}
+                  {Array.from({ length: 3 - selectedClothing.length }).map((_, i) => {
+                    const slotIndex = selectedClothing.length + i;
+                    const isLocked = maxClothing <= slotIndex;
+
+                    if (isLocked) {
+                      return (
+                        <div
+                          key={`locked-${i}`}
+                          className="relative aspect-square rounded-lg border-2 border-dashed border-border bg-muted/50 flex flex-col items-center justify-center cursor-pointer hover:border-primary/50 transition-colors"
+                          onClick={() => router.push(`/${locale}/pricing`)}
+                        >
+                          <Lock className="h-5 w-5 text-muted-foreground mb-1" />
+                          <span className="text-xs text-muted-foreground">Upgrade</span>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <ImageUploader
+                        key={`custom-${i}`}
+                        label={`Clothing ${totalClothing + i + 1}`}
+                        onImageSelect={(url) => setCustomClothingUrls((prev) => [...prev, url])}
+                        onClear={() => setCustomClothingUrls((prev) => prev.filter((_, idx) => idx !== i))}
+                        previewUrl={customClothingUrls[i]}
+                        disabled={status === "pending" || status === "processing"}
+                      />
+                    );
+                  })}
                 </div>
 
                 {/* Wardrobe picker */}
@@ -325,7 +346,7 @@ export default function TryOnPage() {
 
           {/* Right: Quota Panel */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 p-6 rounded-xl border border-border bg-card">
+            <div className="sticky top-28 p-6 rounded-xl border border-border bg-card">
               <h3 className="font-semibold text-foreground mb-4">{t("usage")}</h3>
               <QuotaDisplay
                 quota={quota}
