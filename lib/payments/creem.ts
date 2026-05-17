@@ -38,7 +38,6 @@ export async function createCheckoutSession(params: CreateCheckoutParams): Promi
   const payload: Record<string, unknown> = {
     product_id: params.creemPriceId,
     success_url: params.successUrl,
-    cancel_url: params.cancelUrl,
     metadata: {
       userId: params.userId,
       key: params.key,
