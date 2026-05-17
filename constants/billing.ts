@@ -6,7 +6,7 @@ export type PlanKey =
   | "pro_monthly"
   | "pro_yearly";
 
-export type PackKey = "pack_200" | "tryon_10" | "tryon_50" | "tryon_100";
+export type PackKey = "pack_200" | "pack_500" | "pack_1200";
 
 export type GrantScheduleConfig =
   | {
@@ -27,7 +27,6 @@ type SubscriptionPlan = {
   currency: "usd";
   creditsPerCycle: number;
   cycle: "month" | "year";
-  // To be filled when Creem IDs are available
   creemPriceId?: string;
   grantSchedule?: GrantScheduleConfig;
 };
@@ -45,7 +44,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
   starter_monthly: {
     key: "starter_monthly",
     kind: "subscription",
-    priceCents: 2900,
+    priceCents: 990,
     currency: "usd",
     creditsPerCycle: 1000,
     cycle: "month",
@@ -55,7 +54,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
   starter_yearly: {
     key: "starter_yearly",
     kind: "subscription",
-    priceCents: 29000,
+    priceCents: 9900,
     currency: "usd",
     creditsPerCycle: 12000,
     cycle: "year",
@@ -71,7 +70,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
   pro_monthly: {
     key: "pro_monthly",
     kind: "subscription",
-    priceCents: 9900,
+    priceCents: 1990,
     currency: "usd",
     creditsPerCycle: 10000,
     cycle: "month",
@@ -81,7 +80,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
   pro_yearly: {
     key: "pro_yearly",
     kind: "subscription",
-    priceCents: 99000,
+    priceCents: 19900,
     currency: "usd",
     creditsPerCycle: 120000,
     cycle: "year",
@@ -100,34 +99,24 @@ export const oneTimePacks: Record<PackKey, OneTimePack> = {
   pack_200: {
     key: "pack_200",
     kind: "one_time",
-    priceCents: 500,
+    priceCents: 490,
     currency: "usd",
     credits: 200,
     creemPriceId: "prod_3SiroZeMbMQidMVFDMUzKy",
   },
-  tryon_10: {
-    key: "tryon_10",
+  pack_500: {
+    key: "pack_500",
     kind: "one_time",
-    priceCents: 299,
+    priceCents: 990,
     currency: "usd",
     credits: 500,
-    creemPriceId: undefined,
   },
-  tryon_50: {
-    key: "tryon_50",
+  pack_1200: {
+    key: "pack_1200",
     kind: "one_time",
-    priceCents: 1099,
+    priceCents: 1990,
     currency: "usd",
-    credits: 2500,
-    creemPriceId: undefined,
-  },
-  tryon_100: {
-    key: "tryon_100",
-    kind: "one_time",
-    priceCents: 1899,
-    currency: "usd",
-    credits: 5000,
-    creemPriceId: undefined,
+    credits: 1200,
   },
 };
 
@@ -139,13 +128,13 @@ export const VIRTUAL_TRY_ON_PLANS = {
     hasWatermark: true,
   },
   starter: {
-    priceCents: 999,
+    priceCents: 990,
     monthlyQuota: 200,
     maxClothingPerTry: 3,
     hasWatermark: false,
   },
   pro: {
-    priceCents: 1999,
+    priceCents: 1990,
     monthlyQuota: 1000,
     maxClothingPerTry: 5,
     hasWatermark: false,

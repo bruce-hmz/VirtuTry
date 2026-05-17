@@ -177,16 +177,6 @@
           "Keeps your current subscription unchanged",
           "Useful for launches, spikes, and one-off bursts"
         ]
-      },
-      "tryonPack": {
-        "name": "Try-On Pack",
-        "description": "For virtual try-on without a subscription.",
-        "cta": "Buy {tries} Tries",
-        "features": [
-          "50 credits per try-on = {tries} total tries",
-          "Added instantly to your credit balance",
-          "No subscription needed"
-        ]
       }
     }
   },

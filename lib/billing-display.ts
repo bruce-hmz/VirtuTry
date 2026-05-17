@@ -22,7 +22,8 @@ export const MARKETING_SUBSCRIPTION_PLAN_FAMILIES = [
 ] as const;
 
 function formatUsdPrice(priceCents: number) {
-  return `$${(priceCents / 100).toFixed(0)}`;
+  const dollars = priceCents / 100;
+  return dollars % 1 === 0 ? `$${dollars}` : `$${dollars.toFixed(2)}`;
 }
 
 function formatCredits(credits: number) {
@@ -48,21 +49,6 @@ export function getDefaultOneTimePack() {
     displayCredits: formatCredits(pack.credits),
     displayPrice: formatUsdPrice(pack.priceCents),
   };
-}
-
-export const TRYON_PACK_KEYS: PackKey[] = ["tryon_10", "tryon_50", "tryon_100"];
-
-export function getTryOnPackDisplays() {
-  return TRYON_PACK_KEYS.map((key) => {
-    const pack = oneTimePacks[key];
-    return {
-      key,
-      pack,
-      displayCredits: formatCredits(pack.credits),
-      displayPrice: formatUsdPrice(pack.priceCents),
-      displayTryOns: String(Math.floor(pack.credits / 50)),
-    };
-  });
 }
 
 export function getSubscriptionPlanDisplays() {
