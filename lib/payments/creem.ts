@@ -41,7 +41,7 @@ export async function createCheckoutSession(params: CreateCheckoutParams): Promi
     },
   };
 
-  const base = process.env.CREEM_API_BASE || "https://api.creem.io";
+  const base = process.env.CREEM_API_BASE || (apiKey.startsWith("creem_test_") ? "https://test-api.creem.io" : "https://api.creem.io");
   const endpointUrl = `${base}/v1/checkouts`; // Correct endpoint path from docs
 
   try {

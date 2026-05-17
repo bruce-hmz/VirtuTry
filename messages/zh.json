@@ -1022,6 +1022,8 @@
     "subtitle": "上传您的照片并选择衣服，预览实际穿着效果",
     "yourPhoto": "您的照片",
     "clothing": "衣服",
+    "clothingSlot": "衣服 {number}",
+    "upgradeToUnlock": "升级解锁",
     "fromLibrary": "从库中选择",
     "hideLibrary": "收起库",
     "clothingLibrary": "衣服库",

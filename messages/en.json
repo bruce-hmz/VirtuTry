@@ -1023,6 +1023,8 @@
     "subtitle": "Upload your photo and choose clothes to see how they look on you",
     "yourPhoto": "Your Photo",
     "clothing": "Clothing",
+    "clothingSlot": "Clothing {number}",
+    "upgradeToUnlock": "Upgrade to unlock",
     "fromLibrary": "From Library",
     "hideLibrary": "Hide Library",
     "clothingLibrary": "Clothing Library",

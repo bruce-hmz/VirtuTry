@@ -259,13 +259,17 @@ export default function TryOnPage() {
 
                     if (isLocked) {
                       return (
-                        <div
-                          key={`locked-${i}`}
-                          className="relative aspect-square rounded-lg border-2 border-dashed border-border bg-muted/50 flex flex-col items-center justify-center cursor-pointer hover:border-primary/50 transition-colors"
-                          onClick={() => router.push(`/${locale}/pricing`)}
-                        >
-                          <Lock className="h-5 w-5 text-muted-foreground mb-1" />
-                          <span className="text-xs text-muted-foreground">Upgrade</span>
+                        <div key={`locked-${i}`} className="space-y-2">
+                          <span className="text-sm font-medium text-muted-foreground/50">{t("clothingSlot", { number: slotIndex + 1 })}</span>
+                          <div
+                            className="relative w-full aspect-[3/4] rounded-lg border-2 border-dashed border-muted-foreground/20 bg-muted/30 flex flex-col items-center justify-center gap-2 cursor-pointer group hover:border-primary/40 transition-colors"
+                            onClick={() => router.push(`/${locale}/pricing`)}
+                          >
+                            <div className="p-2.5 rounded-full bg-muted-foreground/10 group-hover:bg-primary/10 transition-colors">
+                              <Lock className="h-5 w-5 text-muted-foreground/60 group-hover:text-primary/70 transition-colors" />
+                            </div>
+                            <span className="text-sm font-medium text-muted-foreground/60 group-hover:text-primary/70 transition-colors">{t("upgradeToUnlock")}</span>
+                          </div>
                         </div>
                       );
                     }
