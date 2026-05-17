@@ -11,11 +11,11 @@ export const VIRTUAL_TRY_ON_CREDIT_COST = 50;
 export const QUOTA_LIMITS = {
   free: {
     daily: 3,
-    monthly: 90, // ~3 per day
+    monthly: 90,
   },
   paid: {
-    daily: Infinity,
-    monthly: 200,
+    daily: 9999,
+    monthly: 9999,
   },
 };
 
