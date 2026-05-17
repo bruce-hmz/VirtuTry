@@ -18,15 +18,6 @@ interface GenerateRequest {
   customClothingUrls?: string[];
 }
 
-async function downloadAsBase64(url: string): Promise<string> {
-  const response = await fetch(url, { cache: "no-store" });
-  if (!response.ok) throw new Error(`Failed to download image: ${response.status}`);
-
-  const contentType = response.headers.get("content-type") || "image/png";
-  const buffer = Buffer.from(await response.arrayBuffer());
-  return `data:${contentType};base64,${buffer.toString("base64")}`;
-}
-
 export async function POST(request: NextRequest) {
   try {
     // 1. Authenticate user
@@ -69,11 +60,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 5. Download person image and convert to Base64
-    const personImageBase64 = await downloadAsBase64(personImageUrl);
-
-    // 6. Fetch clothing images from library + custom uploads, convert to Base64
-    let clothingImagesBase64: string[] = [];
+    // 5. Collect clothing image URLs from library + custom uploads
+    const clothingImageUrls: string[] = [];
 
     if (clothingIds.length > 0) {
       const dbClothings = await db
@@ -87,29 +75,29 @@ export async function POST(request: NextRequest) {
         );
 
       for (const cloth of dbClothings) {
-        if (cloth.imageBase64) {
-          clothingImagesBase64.push(cloth.imageBase64);
-        } else if (cloth.imageUrl) {
-          const base64 = await downloadAsBase64(cloth.imageUrl);
-          clothingImagesBase64.push(base64);
+        if (cloth.imageUrl) {
+          clothingImageUrls.push(cloth.imageUrl);
+        } else if (cloth.imageBase64) {
+          clothingImageUrls.push(cloth.imageBase64);
         }
       }
     }
 
-    // Download custom clothing images from URLs
+    // Add custom clothing image URLs
     for (const url of customClothingUrls) {
-      const base64 = await downloadAsBase64(url);
-      clothingImagesBase64.push(base64);
+      if (url && typeof url === "string") {
+        clothingImageUrls.push(url);
+      }
     }
 
-    if (clothingImagesBase64.length === 0) {
+    if (clothingImageUrls.length === 0) {
       return NextResponse.json(
         { error: "No valid clothing images found" },
         { status: 400 }
       );
     }
 
-    // 7. Get user tier for watermark decision
+    // 6. Get user tier for watermark decision
     const userData = await db
       .select()
       .from(userTable)
@@ -119,35 +107,44 @@ export async function POST(request: NextRequest) {
     const userTier = userData[0]?.planKey && userData[0].planKey !== "free" ? "paid" : "free";
     const hasWatermark = userTier === "free";
 
-    // 8. Call Seedream API
+    // 7. Call Seedream API
     console.log(`[VirtualTryOn] Generating for user ${userId} (${userTier})`);
 
-    const { taskId, status } = await generateVirtualTryOn(
-      personImageBase64,
-      clothingImagesBase64
+    const { taskId, status, imageUrl: resultUrl } = await generateVirtualTryOn(
+      personImageUrl,
+      clothingImageUrls
     );
 
-    // 9. Create database record
+    // 8. Create database record
     const tryOnRecord = await createVirtualTryOn(
       userId,
-      personImageBase64,
+      personImageUrl,
       clothingIds,
       taskId,
       hasWatermark
     );
 
-    // 10. Deduct quota and credits
+    // If result is already available, update it
+    if (resultUrl && status === "completed") {
+      const { updateVirtualTryOnResult } = await import("@/lib/virtualtry");
+      await updateVirtualTryOnResult(taskId, resultUrl);
+    }
+
+    // 9. Deduct quota and credits
     await deductVirtualTryOnQuota(userId);
 
     console.log(`[VirtualTryOn] Created record ${tryOnRecord.id} for task ${taskId}`);
 
-    // 11. Return response
+    // 10. Return response
     return NextResponse.json({
       success: true,
       taskId,
       tryOnId: tryOnRecord.id,
       status,
-      message: "Virtual try-on submitted. Poll /api/virtual-try-on/status for results.",
+      resultImageUrl: resultUrl || undefined,
+      message: resultUrl
+        ? "Virtual try-on completed."
+        : "Virtual try-on submitted. Poll /api/virtual-try-on/status for results.",
       userTier,
       hasWatermark,
     });

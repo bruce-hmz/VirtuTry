@@ -2,46 +2,44 @@ import { volcanoEngineConfig, validateConfig, getHeaders } from './config';
 
 export interface SeedreamResponse {
   id?: string;
+  created?: number;
   data?: Array<{
     url?: string;
     b64_json?: string;
+    revised_prompt?: string;
   }>;
   error?: {
     message?: string;
     code?: string;
+    type?: string;
   };
 }
 
 export async function generateVirtualTryOn(
-  personImageBase64: string,
-  clothingImagesBase64: string[]
-): Promise<{ taskId: string; status: string }> {
+  personImageUrl: string,
+  clothingImageUrls: string[]
+): Promise<{ taskId: string; status: string; imageUrl?: string }> {
   validateConfig();
 
-  if (!personImageBase64) {
+  if (!personImageUrl) {
     throw new Error("Person image is required");
   }
 
-  if (clothingImagesBase64.length === 0 || clothingImagesBase64.length > 3) {
+  if (clothingImageUrls.length === 0 || clothingImageUrls.length > 3) {
     throw new Error("Need 1-3 clothing images");
   }
 
-  const images = [
-    { role: "person" as const, image: personImageBase64 },
-    ...clothingImagesBase64.map(img => ({
-      role: "clothing" as const,
-      image: img,
-    })),
-  ];
+  const allImages = [personImageUrl, ...clothingImageUrls];
 
   const payload = {
-    model: "seedream-5.0-lite",
-    images,
+    model: "doubao-seedream-5-0-lite-260128",
+    prompt: "将提供的服装自然地穿在人物身上，保持人物姿态和面部特征不变，确保服装贴合身体轮廓，光照自然，整体效果逼真。",
+    image: allImages,
     response_format: "url",
   };
 
   try {
-    console.log("[Seedream] Calling API with", clothingImagesBase64.length, "clothing items");
+    console.log("[Seedream] Calling API with", clothingImageUrls.length, "clothing items");
 
     const response = await fetch(
       `${volcanoEngineConfig.apiUrl}/images/generations`,
@@ -67,6 +65,7 @@ export async function generateVirtualTryOn(
     return {
       taskId: data.id || crypto.randomUUID(),
       status: "completed",
+      imageUrl,
     };
   } catch (error) {
     console.error("[Seedream] API error:", error);
