@@ -262,3 +262,20 @@ export const tryOnQuota = pgTable(
     resetAtIdx: index("try_on_quota_reset_at_idx").on(table.resetAt),
   }),
 );
+
+// Uploaded image deduplication (MD5-based)
+export const uploadedImage = pgTable(
+  "uploaded_image",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+    hash: varchar("hash", { length: 32 }).notNull(),
+    url: text("url").notNull(),
+    mimeType: varchar("mime_type", { length: 30 }),
+    size: integer("size"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  table => ({
+    userHashIdx: index("uploaded_image_user_hash_idx").on(table.userId, table.hash),
+  }),
+);
