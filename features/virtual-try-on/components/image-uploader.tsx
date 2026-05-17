@@ -6,7 +6,42 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const MAX_UPLOAD_DIMENSION = 1024;
+const UPLOAD_QUALITY = 0.8;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
+async function compressImage(file: File): Promise<File> {
+  if (file.size <= 1.5 * 1024 * 1024) return file;
+
+  const img = new window.Image();
+  const url = URL.createObjectURL(file);
+
+  await new Promise<void>((resolve, reject) => {
+    img.onload = () => resolve();
+    img.onerror = reject;
+    img.src = url;
+  });
+  URL.revokeObjectURL(url);
+
+  let { width, height } = img;
+  if (width > MAX_UPLOAD_DIMENSION || height > MAX_UPLOAD_DIMENSION) {
+    const ratio = Math.min(MAX_UPLOAD_DIMENSION / width, MAX_UPLOAD_DIMENSION / height);
+    width = Math.round(width * ratio);
+    height = Math.round(height * ratio);
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d")!;
+  ctx.drawImage(img, 0, 0, width, height);
+
+  const blob = await new Promise<Blob>((resolve) =>
+    canvas.toBlob((b) => resolve(b!), "image/jpeg", UPLOAD_QUALITY)
+  );
+
+  return new File([blob], file.name.replace(/\.\w+$/, ".jpg"), { type: "image/jpeg" });
+}
 
 interface ImageUploaderProps {
   onImageSelect: (url: string) => void;
@@ -57,7 +92,8 @@ export function ImageUploader({
         abortRef.current = controller;
 
         const formData = new FormData();
-        formData.append("file", file);
+        const compressed = await compressImage(file);
+        formData.append("file", compressed);
 
         const res = await fetch("/api/upload/image", {
           method: "POST",
