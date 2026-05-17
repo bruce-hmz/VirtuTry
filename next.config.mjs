@@ -23,6 +23,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.tos-cn-beijing.volces.com",
+      },
     ],
   },
   pageExtensions: ["ts", "tsx", "mdx"],
