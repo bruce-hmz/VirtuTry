@@ -49,6 +49,7 @@ export async function createCheckoutSession(params: CreateCheckoutParams): Promi
   const endpointUrl = `${base}/v1/checkouts`; // Correct endpoint path from docs
 
   try {
+    console.log("Creem checkout request:", JSON.stringify({ endpoint: endpointUrl, payload }));
     const res = await fetch(endpointUrl, {
       method: "POST",
       headers: {

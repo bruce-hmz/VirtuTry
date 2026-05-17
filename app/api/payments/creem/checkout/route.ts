@@ -23,8 +23,9 @@ export async function POST(req: NextRequest) {
 
     let creemPriceId: string | undefined;
     // Add success=1 so client has a stable success signal on return
-    const successUrl = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/dashboard?success=1`;
-    const cancelUrl = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/pricing`;
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").trim();
+    const successUrl = `${appUrl}/dashboard?success=1`;
+    const cancelUrl = `${appUrl}/pricing`;
 
     if (kind === "subscription") {
       if (!isSubscriptionKey(key)) {
