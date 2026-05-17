@@ -44,10 +44,10 @@ export async function GET(request: NextRequest) {
     const result = await querySeedreamStatus(taskId);
 
     // 4. Update database based on result
-    if (result.status === "completed" && result.output?.image) {
-      console.log(`[VirtualTryOn] Task ${taskId} completed`);
+    const imageUrl = result.data?.[0]?.url || result.data?.[0]?.b64_json;
 
-      const imageUrl = result.output.image;
+    if (imageUrl) {
+      console.log(`[VirtualTryOn] Task ${taskId} completed`);
       await updateVirtualTryOnResult(taskId, imageUrl);
 
       return NextResponse.json({
@@ -56,22 +56,20 @@ export async function GET(request: NextRequest) {
         resultImageUrl: imageUrl,
         message: "Try-on completed successfully",
       });
-    } else if (result.status === "failed") {
+    } else if (result.error) {
       console.error(`[VirtualTryOn] Task ${taskId} failed:`, result.error);
-
-      await markTryOnFailed(taskId, result.error || "Unknown error");
+      await markTryOnFailed(taskId, result.error.message || "Unknown error");
 
       return NextResponse.json({
         taskId,
         status: "failed",
-        error: result.error || "Try-on generation failed",
+        error: result.error.message || "Try-on generation failed",
       });
     } else {
-      // Still processing or queued
       return NextResponse.json({
         taskId,
-        status: result.status, // 'pending', 'processing', 'queued'
-        message: `Try-on is ${result.status}. Please check again in a few seconds.`,
+        status: "processing",
+        message: "Try-on is still processing. Please check again in a few seconds.",
       });
     }
   } catch (error) {
