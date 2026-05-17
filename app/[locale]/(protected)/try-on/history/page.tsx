@@ -166,11 +166,11 @@ export default function TryOnHistoryPage() {
                   className="group relative aspect-[3/4] rounded-lg overflow-hidden border border-border bg-muted"
                 >
                   {item.resultImageUrl ? (
-                    <Image
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
                       src={item.resultImageUrl}
                       alt="Try-on result"
-                      fill
-                      className="object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">

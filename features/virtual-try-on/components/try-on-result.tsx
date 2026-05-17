@@ -67,11 +67,11 @@ export function VirtualTryOnResult({
 
         {status === "completed" && resultImageUrl && (
           <>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={resultImageUrl}
               alt="Try-on result"
-              fill
-              className="object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
             {hasWatermark && (
               <div className="absolute bottom-3 right-3 px-2 py-1 rounded bg-background/80 text-xs text-muted-foreground">
