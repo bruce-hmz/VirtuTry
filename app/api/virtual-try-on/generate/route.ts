@@ -4,6 +4,7 @@ import {
   createVirtualTryOn,
   deductVirtualTryOnQuota,
 } from "@/lib/virtualtry";
+import { refundCredits } from "@/lib/credits";
 import { generateVirtualTryOn } from "@/lib/volcano-engine/seedream";
 import { db } from "@/lib/db";
 import { user as userTable, clothing } from "@/lib/db/schema";
@@ -83,7 +84,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Add custom clothing image URLs
     for (const url of customClothingUrls) {
       if (url && typeof url === "string") {
         clothingImageUrls.push(url);
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 6. Get user tier for watermark decision
+    // 6. Get user tier
     const userData = await db
       .select()
       .from(userTable)
@@ -107,15 +107,37 @@ export async function POST(request: NextRequest) {
     const userTier = userData[0]?.planKey && userData[0].planKey !== "free" ? "paid" : "free";
     const hasWatermark = userTier === "free";
 
-    // 7. Call Seedream API
+    // 7. Deduct credits FIRST — before calling the expensive API
+    try {
+      await deductVirtualTryOnQuota(userId);
+    } catch (deductError) {
+      console.error("[VirtualTryOn] Credit deduction failed:", deductError);
+      return NextResponse.json(
+        { error: "Failed to deduct credits. Please try again." },
+        { status: 402 }
+      );
+    }
+
+    // 8. Call Seedream API
     console.log(`[VirtualTryOn] Generating for user ${userId} (${userTier})`);
 
-    const { taskId, status, imageUrl: resultUrl } = await generateVirtualTryOn(
-      personImageUrl,
-      clothingImageUrls
-    );
+    let taskId: string;
+    let status: string;
+    let resultUrl: string | undefined;
 
-    // 8. Create database record
+    try {
+      const result = await generateVirtualTryOn(personImageUrl, clothingImageUrls);
+      taskId = result.taskId;
+      status = result.status;
+      resultUrl = result.imageUrl;
+    } catch (apiError) {
+      // API failed — refund credits
+      console.error("[VirtualTryOn] Seedream API failed, refunding credits:", apiError);
+      await refundCredits(userId, 50, "virtual_try_on_refund").catch(() => {});
+      throw apiError;
+    }
+
+    // 9. Create database record
     const tryOnRecord = await createVirtualTryOn(
       userId,
       personImageUrl,
@@ -124,14 +146,10 @@ export async function POST(request: NextRequest) {
       hasWatermark
     );
 
-    // If result is already available, update it
     if (resultUrl && status === "completed") {
       const { updateVirtualTryOnResult } = await import("@/lib/virtualtry");
       await updateVirtualTryOnResult(taskId, resultUrl);
     }
-
-    // 9. Deduct quota and credits
-    await deductVirtualTryOnQuota(userId);
 
     console.log(`[VirtualTryOn] Created record ${tryOnRecord.id} for task ${taskId}`);
 

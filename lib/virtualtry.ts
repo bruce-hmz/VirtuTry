@@ -299,38 +299,36 @@ export async function canUserTryOn(
  * Deduct try-on quota and credits
  */
 export async function deductVirtualTryOnQuota(userId: string) {
-  try {
-    const now = new Date();
+  const now = new Date();
 
-    // Deduct daily quota
-    await db
-      .update(tryOnQuota)
-      .set({ quotaUsed: sql`${tryOnQuota.quotaUsed} + 1` })
-      .where(
-        and(
-          eq(tryOnQuota.userId, userId),
-          eq(tryOnQuota.quotaType, "daily"),
-          gt(tryOnQuota.resetAt, now)
-        )
-      );
+  // Deduct daily quota
+  await db
+    .update(tryOnQuota)
+    .set({ quotaUsed: sql`${tryOnQuota.quotaUsed} + 1` })
+    .where(
+      and(
+        eq(tryOnQuota.userId, userId),
+        eq(tryOnQuota.quotaType, "daily"),
+        gt(tryOnQuota.resetAt, now)
+      )
+    );
 
-    // Deduct monthly quota
-    await db
-      .update(tryOnQuota)
-      .set({ quotaUsed: sql`${tryOnQuota.quotaUsed} + 1` })
-      .where(
-        and(
-          eq(tryOnQuota.userId, userId),
-          eq(tryOnQuota.quotaType, "monthly"),
-          gt(tryOnQuota.resetAt, now)
-        )
-      );
+  // Deduct monthly quota
+  await db
+    .update(tryOnQuota)
+    .set({ quotaUsed: sql`${tryOnQuota.quotaUsed} + 1` })
+    .where(
+      and(
+        eq(tryOnQuota.userId, userId),
+        eq(tryOnQuota.quotaType, "monthly"),
+        gt(tryOnQuota.resetAt, now)
+      )
+    );
 
-    // Deduct credits
-    await deductCredits(userId, VIRTUAL_TRY_ON_CREDIT_COST, "virtual_try_on");
-  } catch (error) {
-    console.error("Error deducting try-on quota:", error);
-    throw error;
+  // Deduct credits — check result, throw on failure
+  const result = await deductCredits(userId, VIRTUAL_TRY_ON_CREDIT_COST, "virtual_try_on");
+  if (!result.success) {
+    throw new Error(`Credit deduction failed: ${result.error}`);
   }
 }
 
