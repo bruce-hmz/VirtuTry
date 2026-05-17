@@ -49,7 +49,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
     currency: "usd",
     creditsPerCycle: 1000,
     cycle: "month",
-    creemPriceId: "prod_6oSIwPL8m6scklr3fwdkC9",
+    creemPriceId: "prod_KOmXB0HE59CxSgcnGSH3J",
     grantSchedule: { mode: "per_cycle" },
   },
   starter_yearly: {
@@ -75,7 +75,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
     currency: "usd",
     creditsPerCycle: 10000,
     cycle: "month",
-    creemPriceId: "prod_5Xzh9qV5TWeTQtRxjZPEHM",
+    creemPriceId: "prod_6enLqYwSXuDE8XY5gNeavo",
     grantSchedule: { mode: "per_cycle" },
   },
   pro_yearly: {
@@ -85,7 +85,7 @@ export const subscriptionPlans: Record<PlanKey, SubscriptionPlan> = {
     currency: "usd",
     creditsPerCycle: 120000,
     cycle: "year",
-    creemPriceId: "prod_2xyljTJW1IlT8FUDrucU3X",
+    creemPriceId: "prod_2TAWEHwHg36KkU3YOS3sOV",
     grantSchedule: {
       mode: "installments",
       grantsPerCycle: 12,
