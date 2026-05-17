@@ -89,11 +89,15 @@ function getErrorMessage(error: unknown, fallback = "Unknown error") {
 export async function POST(req: NextRequest) {
   // Read raw body for signature verification
   const rawBody = await req.text();
-  
+
   // Verify signature
   const ok = verifyWebhookSignature(req.headers, rawBody);
   if (!ok) {
-    // Silent fail for signature verification to avoid log spam from retries
+    const sigHeader = req.headers.get("creem-signature") || req.headers.get("x-creem-signature");
+    console.error("[Creem Webhook] Signature verification failed", {
+      hasSigHeader: !!sigHeader,
+      hasSecret: !!process.env.CREEM_WEBHOOK_SECRET,
+    });
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
@@ -116,22 +120,18 @@ export async function POST(req: NextRequest) {
   try {
     // Handle Creem webhook structure
     const type = event.eventType;
-    
-    // Only log important events
-    if (type === "checkout.completed" || type === "subscription.paid") {
-      console.log(`[Creem Webhook] Processing payment: ${type}`);
-    }
-    
+    console.log(`[Creem Webhook] Received event: ${type}`);
+
     // Get the main object
     const mainObject: CreemWebhookObject = event.object ?? {};
-    
+
     // Extract metadata from the correct location based on event type
     let metadata: CreemMetadata = {};
     let paymentId: string | undefined;
     let subscriptionId: string | undefined;
     let amountCents = 0;
     let currency = "usd";
-    
+
     if (type === "checkout.completed") {
       // For checkout.completed, metadata is in the checkout object
       metadata = mainObject?.metadata || {};
@@ -155,15 +155,27 @@ export async function POST(req: NextRequest) {
       amountCents = mainObject?.product?.price || 0;
       currency = mainObject?.product?.currency || "USD";
     }
-    
-    // Silent processing - no need to log metadata
-    
+
+    console.log("[Creem Webhook] Extracted metadata:", {
+      userId: metadata.userId,
+      key: metadata.key,
+      kind: metadata.kind,
+      paymentId,
+      subscriptionId,
+      objectKeys: mainObject ? Object.keys(mainObject) : [],
+    });
+
     const userId = metadata.userId;
     const key = metadata.key;
     const kind = metadata.kind;
 
     if (!userId || !key || !kind) {
-      // Don't log details to avoid PII exposure
+      console.error("[Creem Webhook] Missing metadata", {
+        hasUserId: !!userId,
+        hasKey: !!key,
+        hasKind: !!kind,
+        rawObjectSample: JSON.stringify(event).slice(0, 500),
+      });
       return NextResponse.json({ error: "Missing metadata" }, { status: 400 });
     }
 
