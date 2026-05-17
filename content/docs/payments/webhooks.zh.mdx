@@ -6,7 +6,7 @@ description: Creem Webhook 处理机制。
 ## 端点
 
 ```
-POST /api/payments/creem/webhook
+POST /api/webhooks/creem
 ```
 
 ## 安全机制
@@ -38,7 +38,7 @@ const isValid = verifyWebhookSignature(body, signature, CREEM_WEBHOOK_SECRET);
 在 Creem Dashboard 中设置 webhook URL：
 
 ```
-https://your-domain.com/api/payments/creem/webhook
+https://your-domain.com/api/webhooks/creem
 ```
 
 在 `.env` 中配置 webhook 密钥：

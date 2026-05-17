@@ -6,7 +6,7 @@ description: How Creem webhooks are processed.
 ## Endpoint
 
 ```
-POST /api/payments/creem/webhook
+POST /api/webhooks/creem
 ```
 
 ## Security
@@ -38,7 +38,7 @@ Duplicate webhooks are handled by checking `providerPaymentId` in the `payment` 
 In your Creem Dashboard, set the webhook URL to:
 
 ```
-https://your-domain.com/api/payments/creem/webhook
+https://your-domain.com/api/webhooks/creem
 ```
 
 And configure the webhook secret in `.env`:

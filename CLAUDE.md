@@ -113,7 +113,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 视频生成: 参考 `app/api/video/generate/route.ts`
 
 ### 3. 订阅与支付流程 (Creem)
-**核心文件**: `lib/payments/creem.ts`, `app/api/payments/creem/webhook/route.ts`, `constants/billing.ts`
+**核心文件**: `lib/payments/creem.ts`, `app/api/webhooks/creem/route.ts`, `constants/billing.ts`
 
 #### 订阅计划配置 (`constants/billing.ts`)
 ```typescript
@@ -131,8 +131,8 @@ pack_200:        $5 → 200 积分
 2. **创建 Checkout Session** (`lib/payments/creem.ts:24-74`)
    - 调用 Creem API 创建支付会话
    - metadata 中携带 `userId`, `key` (计划标识), `kind` (subscription/one_time)
-3. **用户完成支付** → Creem 发送 webhook 到 `/api/payments/creem/webhook`
-4. **Webhook 处理** (`app/api/payments/creem/webhook/route.ts`)
+3. **用户完成支付** → Creem 发送 webhook 到 `/api/webhooks/creem`
+4. **Webhook 处理** (`app/api/webhooks/creem/route.ts`)
    - ✅ 验证签名 (`verifyWebhookSignature`)
    - ✅ 幂等性检查 (通过 `providerPaymentId` 防止重复处理)
    - ✅ 插入 `payment` 记录
@@ -341,7 +341,7 @@ pnpm db:migrate  # 使用迁移文件
 ### 3. 配置 Creem Webhook
 在 Creem Dashboard 中设置 Webhook URL:
 ```
-https://your-domain.com/api/payments/creem/webhook
+https://your-domain.com/api/webhooks/creem
 ```
 监听事件: `checkout.completed`, `subscription.paid`, `subscription.active`
 

@@ -145,7 +145,7 @@ The important groups are:
 ### 3. Billing and subscriptions
 
 - Plan keys and pack keys only come from `constants/billing.ts`.
-- Creem webhook processing lives in `app/api/payments/creem/webhook/route.ts`.
+- Creem webhook processing lives in `app/api/webhooks/creem/route.ts`.
 - Annual plans use `subscription_credit_schedule` installments and are granted by `app/api/cron/subscription-grants/route.ts`.
 - If you touch subscription logic, keep these records aligned:
   `user.planKey`, `payment`, `subscription`, `credit_ledger`, and `subscription_credit_schedule`.

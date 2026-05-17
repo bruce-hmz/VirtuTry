@@ -28,7 +28,7 @@ Configured in `constants/billing.ts`:
 
 1. **User clicks buy** → Frontend calls `/api/payments/creem/checkout`
 2. **Checkout session created** → Creem API returns a payment URL
-3. **User completes payment** → Creem sends webhook to `/api/payments/creem/webhook`
+3. **User completes payment** → Creem sends webhook to `/api/webhooks/creem`
 4. **Webhook processing**:
    - Signature verification (HMAC-SHA256)
    - Idempotency check (prevents duplicate processing)
