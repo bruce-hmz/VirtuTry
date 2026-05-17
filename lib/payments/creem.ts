@@ -30,10 +30,15 @@ export async function createCheckoutSession(params: CreateCheckoutParams): Promi
     return { url: "/api/payments/creem/redirect-placeholder?success=1" };
   }
 
+  if (!params.creemPriceId) {
+    throw new Error(`Creem product ID not configured for plan/pack: ${params.key}`);
+  }
+
   // Create payload according to Creem API documentation
   const payload: Record<string, unknown> = {
-    product_id: params.creemPriceId, // Creem expects product_id
+    product_id: params.creemPriceId,
     success_url: params.successUrl,
+    cancel_url: params.cancelUrl,
     metadata: {
       userId: params.userId,
       key: params.key,
